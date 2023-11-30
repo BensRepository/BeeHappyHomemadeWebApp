@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.left {
+    height: 850px;
+    background-color: rgb(156, 152, 152);
+    display: block;
+    width: 50%;
+    overflow-y: scroll;
+
+}
+.right {
+    height: 720px;
+    background-color: rgb(173, 169, 169);
+    color: rgb(7, 7, 7);
+    display: block;
+    width: 50%;
+    overflow-y: scroll;
+}
+img {
+    transition: opacity .3s linear;
+}
+
+img:hover {
+    opacity: .5;
+    cursor: pointer;
+}
+              /* width */
+::-webkit-scrollbar {
+width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px rgb(48, 48, 47); 
+border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(73, 73, 72);
+border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #585353; 
+}
+
+li{
+    display: inline;
+
+}

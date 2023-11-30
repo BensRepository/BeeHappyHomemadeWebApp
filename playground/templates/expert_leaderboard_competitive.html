@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<script>
+
+</script>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Skin Master</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'skins/pistols/deserteagle/purple/Blaze.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/skin_master.css'%}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: black;">
+            <div class="container px-lg-5">
+                <img href="{% url 'index' %}" src="/static/images/tools.png" width="20" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <section style="text-align: center;align-items: center;">
+            <div style="text-align: center;align-items: center;">
+                <p1 style="color: goldenrod;font-size: 75px;font-weight: bold;">Survival Leaderboard Submission</p1>
+                {% block content %}
+                <div style="align-items: center;text-align: center;margin: auto;">
+                    <form id="leaderboard_form" method="post" style="align-items: center;text-align: center;display: inline-block;  margin-bottom: 30px;">
+                        <table style="color: white; margin: 10px;font-size: 20px;">
+                            {% csrf_token %}
+                            {{ form }}
+            
+                        </table>
+                       
+                     
+                        <div style="display: inline-block;margin-top: 30px;"> 
+                            <button id="submit_leaderboards"type="submit" class="button-73" role="button" style="height: auto;width: 400px;height: 100px;" onclick="submitLeaderboards()">Submit to Leaderboard</button>
+                        </div>
+                    </form>
+                </div>
+
+                {% endblock %}
+                <script>
+                    function determineRankInput(rate){
+
+                        if (rate > 65) {
+                        rank = "Global Elite"
+                        } else  if (rate > 55) {
+                        rank = "Supreme"
+                        }
+                        else  if (rate > 50) {
+                        rank = "LEM"
+                        }
+                        else  if (rate > 45) {
+                        rank = "LE"
+                        }
+                        else  if (rate > 40) {
+                        rank = "DMG"
+                        }
+                        else  if (rate > 35) {
+                        rank = "MGE"
+                        }
+                        else  if (rate > 32) {
+                        rank = "MG2"
+                        }
+                        else  if (rate > 28) {
+                        rank = "MG"
+                        }
+                        else  if (rate > 26) {
+                        rank = "NovaMaster"
+                        }
+                        else  if (rate > 24) {
+                        rank = "Nova3"
+                        }
+                        else  if (rate > 22) {
+                        rank = "Nova2"
+                        }
+                        else  if (rate > 20) {
+                        rank = "Nova1"
+                        }
+                        else  if (rate > 18) {
+                        rank = "SilverEliteMaster"
+                        }
+                        else  if (rate > 16) {
+                        rank = "SilverElite"
+                        }
+                        else  if (rate > 14) {
+                        rank = "Silver3"
+                        }
+                        else  if (rate > 12) {
+                        rank = "Silver2"
+                        }
+                        else if(rate < 12){
+                        rank = "Silver1"
+                        }
+                        else{
+                        alert("fuck")
+                        rank = "Something went wrong - Please Report this bug in the main menu :)"
+                        }
+                        return rank
+                        }
+                    document.getElementById("submit_leaderboards").addEventListener("click", function(event) {
+                      event.preventDefault(); // Prevent form submission if needed
+                    
+                      // Select the hidden field by its ID
+                      var hiddenFieldStreak = document.getElementById("id_streak");
+                      var hiddenFieldRank = document.getElementById("id_rank");
+                      var hiddenFieldScore = document.getElementById("id_score");
+                      var hiddenFieldLength = document.getElementById("id_length");
+             
+                      //var hiddenFieldScore = document.getElementById("length");
+                      // Update the value of the hidden field
+                      hiddenFieldStreak.value = localStorage.getItem("streak");
+                      hiddenFieldRank.value = localStorage.getItem("rank");
+                      hiddenFieldScore.value = localStorage.getItem("score");
+                      hiddenFieldLength.value = localStorage.getItem("length");
+                      if (document.getElementById("id_name").value == "") {
+                        document.getElementById("id_name").value = "Player Name"
+                      } else {
+                        
+                      }
+                      // Optionally, you can submit the form to send the updated value to the server
+                      document.getElementById("leaderboard_form").submit();
+                   
+                    });
+
+                    </script>
+                <div>
+                    <p style="font-size: 20px;display:inline-block; ">You scored:</p> <p style="font-size: 25px;" id="score"> </p>
+                    <div style="display: inline;">
+                        <p> Rarity Success </p><p style="font-size: 30px;" id="success_rate_colours"> </p>
+                        <p> Naming Success </p><p style="font-size: 30px;" id="success_rate_skins">  </p>
+                    </div>
+                   
+                    <p style="font-size: 20px;display:inline-block; ">You ranked: </p> 
+                    <p style="font-size: 25px;" id="rank_value"> </p>
+                    <div id="rank_picture" style="padding-bottom: 10px;"></div>
+                </div>
+                <script>
+                    document.getElementById("success_rate_colours").innerText = localStorage.getItem("rate_colours")
+                </script>
+
+                <script>
+                    rank_src = {"Silver1" : "/static/ranks/silver1.png","Silver2":"/static/ranks/silver2.png","Silver3":"/static/ranks/silver3.png","SilverElite":"/static/ranks/silver4.png","SilverEliteMaster":"/static/ranks/silver5.png","Nova1":"/static/ranks/nova1.png","Nova2":"/static/ranks/nova2.png","Nova3":"/static/ranks/nova3.png","NovaMaster":"/static/ranks/nova4.png","MG":"/static/ranks/mg.png","MG2":"/static/ranks/mg2.png","MGE":"/static/ranks/mge.png","DMG":"/static/ranks/dmg.png","LE":"/static/ranks/le.png","LEM":"/static/ranks/lem.png","Supreme":"/static/ranks/supreme.png","Global Elite":"/static/ranks/theglobalelite.png"}
+                    rank_name = {"Silver1" : "Silver I","Silver2":"Silver II","Silver3":"Silver III","SilverElite":"Silver Elite","SilverEliteMaster":"Silver Elite Master","Nova1":"Nova I","Nova2":"Nova II","Nova3":"Nova III","NovaMaster":"Nova Master","MG":"Master Guardian","MG2":"Master Guardian 2","MGE":"Master Guardian Elite","DMG":"Distinguished Master Guardian","LE":"Legendary Eagle","LEM":"Legendary Eagle Master","Supreme":"Supreme","Global Elite":"The Global Elite"}
+                    document.getElementById("score").innerText  = localStorage.getItem("score")
+                    document.getElementById("success_rate_skins").innerText  = localStorage.getItem("rate_skins")
+                    document.getElementById("rank_value").innerText =  localStorage.getItem("rank")
+
+                    var elem = document.createElement("img");
+                    elem.src = rank_src[determineRankInput(localStorage.getItem("score"))]
+                    document.getElementById("rank_picture").appendChild(elem);
+                </script>
+                <script>
+                    document.getElementById("success_rate_colours").innerText = localStorage.getItem("rate_colours")
+                </script>
+               
+
+               
+                <p id="main_menu_redirect" onclick="play_button()">Main Menu</p>
+            </div>
+           
+        </section>
+     
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);position: fixed;text-align: center;bottom: 0px;width: 100%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/skin_master_competitive.js' %}"></script>
+        
+        <script src="{% static 'js/skin_datascript_survival.js' %}"></script>
+        
+    </body>
+</html>
+

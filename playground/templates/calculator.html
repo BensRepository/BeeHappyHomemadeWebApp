@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+     
+{% load static %}
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CSTools Case Calculator</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'cases/Chroma_2.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/calculator.css'%}" rel="stylesheet" />
+    </head>
+    <body style="background-color: rgb(48, 48, 47);">
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+            <div class="container px-lg-5">
+                <img href="{% url 'index' %}" src="/static/images/tools.png" width="20" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+            
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                        <li class="nav-item">
+                            <select style="height: 40px;width: 100px;padding-left: 10px;"class="form-select" id="currency" onchange="currencyUpdators()">
+                                <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;</option>
+                                <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;</option>
+                                <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;</option>
+                            </select>
+                        </li>
+                    
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {{ caseMedianPrices|json_script:"caseMedianPrices" }}
+        {{ caseNames|json_script:"caseNames" }}
+        {{ Hashid|json_script:"hashids" }}
+ 
+        <script>
+
+            function currencyUpdater(value){
+                selectedCurrency = document.getElementById('currency').value
+                currencyRates= {"EUR":"1.16","USD":"1.27","GBP":"1"}
+                return value * currencyRates[selectedCurrency]
+            }
+            
+            function calculatetotal(){
+                                    
+                casename = document.getElementById("desc").innerHTML.split(' ').join('_').replace("_Case","");
+                var case_cost = currencyUpdater(JSON.parse(document.getElementById('caseMedianPrices').textContent)[casename]);
+
+                document.getElementById("price").innerHTML = formatter(document.getElementById("ValueField").value *case_cost) ;
+            
+                var caseprice = document.getElementById("ValueField").value * case_cost;
+            
+                document.getElementById("keyprice").innerHTML = formatter(document.getElementById("ValueField").value * currencyUpdater(1.99));
+                keyprice = document.getElementById("ValueField").value * currencyUpdater(1.99)
+                
+                document.getElementById("total").innerHTML =formatter(caseprice +keyprice);
+                
+                var value = JSON.parse(document.getElementById('hashids').textContent);
+                
+                var link = 'https://steamcommunity.com/market/listings/730/'+value[casename];
+                document.getElementById("buy").innerHTML ='<form action='+link+'><input type="submit" value="Buy Case" /></form>';
+                document.getElementById("simulate").innerHTML ='<button onclick="simulateloot()"> Simulate</button>';
+                }
+
+            function formatter(value){
+                selectedCurrency = document.getElementById('currency').value
+                const formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: selectedCurrency,
+                });
+                return formatter.format(value)
+            }
+            function showInfo(name) {
+
+                document.getElementById("budgetInput").type =  "hidden";
+                document.getElementById("currency").type =  "disabled";
+
+                document.getElementById('caseList').innerHTML=""
+                var path = "{% static 'cases/'%}" +name+".png";
+                document.getElementById("case").innerHTML =  '<img onclick="removeCase()" src='+path+'>';
+
+                document.getElementById("desc3").innerHTML = "Case Price";
+                document.getElementById("price").innerHTML = formatter(0) ;
+
+                document.getElementById("desc4").innerHTML = "Key Price" ;
+                document.getElementById("keyprice").innerHTML = formatter(0);
+                
+
+                document.getElementById("title").innerHTML = "Choose Amount";
+                document.getElementById("desc2").innerHTML = "Number of cases";
+                document.getElementById("desc").innerHTML = name.split('_').join(' ') + " Case";
+                document.getElementById("desc5").innerHTML = "Total Cost";
+                document.getElementById("total").innerHTML = formatter(0);
+                if(document.getElementById("input").innerHTML ==""){
+                    document.getElementById("input").innerHTML = '<input id="ValueField" type="number" min="0" onchange="onChange();" onkeyup="calculatetotal()"/>';
+                    
+                }
+                
+                document.getElementById("buy").innerHTML ='';
+                document.getElementById("simulate").innerHTML ='';
+                document.getElementById("blues").innerHTML = "";
+                document.getElementById("purples").innerHTML = "";
+                document.getElementById("pinks").innerHTML = "";
+                document.getElementById("reds").innerHTML = "";
+                document.getElementById("yellows").innerHTML = "";
+                document.getElementById("simulatorTitle").innerHTML = "";
+                var casePrices = JSON.parse(document.getElementById('caseMedianPrices').textContent);
+
+                if((document.getElementById("budgetInput").value !=formatter("100000000"))&& document.getElementById("input")!= ""){
+                    caseAndKeyPrice = currencyUpdater(casePrices[name]) + currencyUpdater(1.99);
+                    caseAmount = document.getElementById("budgetInput").value/caseAndKeyPrice;
+                    document.getElementById("ValueField").value = Math.trunc(caseAmount);
+                    calculatetotal();
+               } 
+                
+              
+               calculatetotal();
+               
+                }
+            function onChange(){
+                clearBudget()
+                calculatetotal()
+            }
+            function clearBudget(){
+                document.getElementById("budgetInput").value = formatter("100000000")
+            }
+            
+            function removeCase(){
+
+             
+                document.getElementById("case").innerHTML =  "";
+
+                document.getElementById("desc3").innerHTML = "";
+                document.getElementById("price").innerHTML = "";
+
+                document.getElementById("desc4").innerHTML = "";
+                document.getElementById("keyprice").innerHTML = "";
+                
+
+                document.getElementById("title").innerHTML = "Budget Case Calculator";
+                document.getElementById("budgetInput").type='number';
+           
+                document.getElementById("desc").innerHTML = "Enter budget - Select Case";
+                document.getElementById("desc2").innerHTML = "";
+    
+         
+                document.getElementById("desc5").innerHTML = "";
+                document.getElementById("total").innerHTML = "";
+                document.getElementById("input").innerHTML = "";
+                document.getElementById("buy").innerHTML ="";
+                document.getElementById("simulate").innerHTML ="";
+                document.getElementById("blues").innerHTML = "";
+                document.getElementById("purples").innerHTML = "";
+                document.getElementById("pinks").innerHTML = "";
+                document.getElementById("reds").innerHTML = "";
+                document.getElementById("yellows").innerHTML = "";
+                document.getElementById("simulatorTitle").innerHTML = "";
+                calculateBudget()
+            }
+            
+            function calculateBudget(){
+                
+                var budget = document.getElementById("budgetInput").value;
+                //document.getElementById("budgetInput").value = formatter(budget)
+                
+                var casePrices = JSON.parse(document.getElementById('caseMedianPrices').textContent) ;
+                var caseNames = JSON.parse(document.getElementById('caseNames').textContent);
+
+                document.getElementById('caseList').innerHTML=""
+
+                for (let i = 0; i < caseNames.length; i++) {
+                    caseAndKeyPrice = currencyUpdater(casePrices[caseNames[i]]) + currencyUpdater(1.99)
+                    caseAmount = budget/caseAndKeyPrice
+                    if(caseAmount > 1){
+                        makeImages(caseNames[i],caseAmount);
+                    }
+            
+                }
+
+            }
+
+
+
+            function makeImages(caseName,caseAmount){
+                var img = document.createElement("IMG");
+                url = "/static/cases/"+caseName+".png"
+                img.src = url;
+                img.id = caseName;
+                img.style.width = "100px";
+                img.style.height = "auto"; 
+                img.addEventListener("click", function(){showInfo(caseName) });;
+
+                let p = document.createElement('p');
+                p.id = caseName +"p"
+                p.style.display="inline-block"
+                document.getElementById("caseList").appendChild(p);
+                document.getElementById(caseName +"p").appendChild(img);
+                
+                let p2 = document.createElement('p');
+                p2.id = caseName +"p2"
+                p2.style.display="inline-block"
+                document.getElementById("caseList").appendChild(p);
+                p2.innerHTML="x "+String(Math.trunc(caseAmount));
+                document.getElementById(caseName +"p").appendChild(p2)
+          
+                
+            }
+
+            // Load exchange rates data via AJAX:
+            //document.querySelector.getJSON(
+                // NB: using Open Exchange Rates here, but you can use any source!
+                //'https://openexchangerates.org/api/latest.json?app_id=97690a0737ec4f75a6e93c705a61e81d',
+         
+            //);
+            
+            
+            function casesCurrencyUpdater(){
+               selectedCurrency = document.getElementById("currency").value
+               let costElems = document.querySelectorAll(".caseCosts");
+               for (let i = 0; i < costElems.length; i++) costElems[i].innerHTML = formatter(currencyUpdater(originalCosts[i])) ;
+
+            }
+
+
+            function currencyUpdators(){
+                document.getElementById("budgetInput").placeholder= formatter("100000000")
+                calculateBudget()
+                casesCurrencyUpdater()
+                calculatetotal()
+            
+                
+            }
+        </script>
+        <!-- Page Content-->
+        <section>
+            <div class="container">
+                <div class="left">
+                    <h1 style="background-color: rgb(48, 48, 47);color: white;margin-bottom: 0px;padding-left: 20px;"> Specific Case Calculator</h1>
+                    <h4  style="background-color: rgb(70, 70, 69);color: white;padding-left: 20px;padding-bottom: 5px;">Select Case</h4>
+                    
+                    {% for key,value in caseMedianPrices.items %}
+                    
+                    <img id="{{key}}"src=""onclick="showInfo('{{key}}')" alt="{{key}}">
+                    <!--<p style="display: inline-block; margin: 0;" class="currencySymbol">£</p>-->
+                    <p  id="{{key}}Cost" class="caseCosts" style="display: inline-block;">{{value}}</p>
+              
+                    <script>
+                        var path = "{% static 'cases/'%}" +"{{key}}"+".png";
+                        document.getElementById("{{key}}").src=path;
+                    </script>
+                        {% endfor %}
+                    <script>
+                        var originalCosts = [];
+                        let costElems = document.querySelectorAll(".caseCosts");
+                        for (let i = 0; i < costElems.length; i++) {
+                           
+                            originalCosts.push(parseFloat(costElems[i].innerHTML));
+
+                        };
+                     
+                    </script>
+                </div>
+                
+                <div class="right" >
+                    <h1 style="background-color: rgb(48, 48, 47);color: white;margin-bottom: 0px; padding-left: 20px;" id="title">Budget Case Calculator</h1>
+                    <h4 style="background-color: rgb(70, 70, 69);color: white;padding-left: 20px;padding-bottom: 5px;" id="desc">Enter budget - Select Case</h4>
+                    <div style="display: inline;">
+                        
+                        <input style= "float: left; margin-left: 30px;"id="budgetInput"step="any" type="number" min="0" onchange="calculateBudget()" onkeyup="calculateBudget()"/>
+                        <script>
+                            document.getElementById("budgetInput").placeholder = formatter("100000000")
+                            let costElemements = document.querySelectorAll(".caseCosts");
+                            const formatter2 = new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'GBP',
+                            });
+                            for (let i = 0; i < costElemements.length; i++) {
+                                costElemements[i].innerHTML = formatter2.format(costElemements[i].innerHTML)
+                            };
+                        </script>
+                    </div>
+                    <div style="display: inline-block;">
+                
+                       
+                    
+                        
+    
+
+                        <div style=" display: inline-block; padding: 0px; "id="caseList"></div >
+                        <p id="case"></p>
+
+                        <h5 style="padding-left: 20px;"id="desc2"></h5>
+                        <p style="margin-left: 20px;"id="input"></p>
+                        
+                        <h6 style="padding-left: 20px;" id="desc3"></h6>
+                        <p style="padding-left: 20px;"id="price"></p>
+                        <h6 style="padding-left: 20px;"id="desc4"></h6>
+                        <p style="padding-left: 20px;"id="keyprice"></p>
+        
+                        <h6 style="padding-left: 20px;"id="desc5"></h6>
+                        <p style="padding-left: 20px;"id="total"></p>
+
+                        <div style="width: 75px; display: inline-block; height:50px;  margin:5px;">
+                            <p style="margin-left: 20px;" id="buy"></p>
+                        </div>
+                        <div style="width: 75px; display: inline-block; height:50px;  margin:5px; ">
+                            <p style="margin-left: 20px;" id="simulate"></p>
+                        </div>
+                    </div>
+
+                    <div style="width: 150px;display: inline-block;">
+                        <div>
+                            <h5 id="simulatorTitle"></h5>
+                            <p id="blues"></p>
+                            <p id="purples"></p>
+                            <p id="pinks"></p>
+                            <p id="reds"></p>
+                            <p id="yellows"></p>
+                        </div>
+                    </div>
+                </div>
+               
+        </section>
+        
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);;position: fixed;text-align: center;bottom: 0px;width: 101%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/calculatorscript.js' %}"></script>
+
+    </body>
+</html>

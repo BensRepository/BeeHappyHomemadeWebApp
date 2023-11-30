@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+    <script>
+        var countries = ['Steel Disruption', 'Bamboo Shadow', 'Shallow Grave', 'Surveillance', 'Fairy Tale', 'Scavenger', 'Orange Crash', 'Fowl Play', 'Prime Conspiracy', 'Grassland Leaves', 'Detour',
+    'Dezastre', 'CAUTION!', 'Nostalgia', 'Prototype', 'Moss Quartz', 'Quick Sand', 'Watchdog', 'Asiimov', 'Rust Leaf', 'Insomnia', 'Ventilators', 'Melondrama', 'POP AWP', 'Ocean Drive', 'Re.built',
+    'Sweeper', 'Baroque Red', 'Hydroponic', 'Acid Etched', 'Army Mesh', 'Whitefish', "Mummy's Rot", 'Ancient Earth', 'Sand Scale', 'Vent Rush', 'Blind Spot', 'Cobalt Disruption', 'Lapis Gator', 
+    'Daedalus', 'Osiris', 'Obsidian', 'Teal Blossom', 'Entombed', 'Arctic Camo', 'Rebel', 'Hunter', 'Aerial', 'Fall Hazard', "Man-o-war", 'Case Hardened', 'Splash Jam', 'Run and Hide', 'Desert Tactical',
+    'Flashback', 'Icarus Fell', 'Vogue', 'Terrain', 'Umbral Rabbit', 'Connexion', 'Candy Apple', 'Tranquility', 'Shattered', 'Angry Mob', 'Navy Murano', 'Plume', 'Meteorite', 'Pink DDPAT', 'Mudder', 
+    'Tuxedo', 'Whiteout', 'Brother', 'Ancient Visions', 'Desert DDPAT', 'Midnight Palm', 'Blue Ply', 'Safari Mesh', 'Hypnotic', 'Dark Blossom', 'The Kraken', 'Black Sand', 'Plastique', 'Enforcer', 
+    'Sonar', 'Bratatat', 'Nevermore', 'Rat Rod', 'Dark Filigree', 'Blue Titanium', 'Synth Leaf', 'Spirit Board', 'Rising Skull', 'Blue Fissure', 'Imprint', 'Blood in the Water', 'Deep Relief', 
+    'CaliCamo', 'Asterion', 'Embargo', 'Oxide Blaze', 'Fizzy POP', 'Oni Taiji', 'Cyber Shell', 'Scorched', 'Phoenix Chalk', 'Cocoa Rampage', 'Azure Glyph', 'Red Astor', 'Devourer', 'Gila', 'Blue Tire',
+    'Skull Crusher', 'Roadblock', 'Wild Lily', 'Toxic', 'Bamboo Garden', 'Plague', 'Eco', 'Blue Streak', 'Deadly Poison', 'Mehndi', 'Torn', 'Red Tire', 'Snake Pit', 'Boroque Sand', 'Exposure', 'Grip', 
+    'Lightning Strike', 'Red Laminate', 'Setting Sun', 'Toy Soldier', 'Monkeyflage', 'Vault Heist', 'Chatterbox', 'Winterized', 'Rocket Pop', 'The Battlestar', 'Fuel Injector', 'Imperial', 'Control Panel',
+    'Urban Hazard', 'See Ya Later', 'Sage Spray', 'Akoben', 'Mischief', 'Roll Cage', 'Tropical Storm', 'Apocalypto', 'Nebula Crusader', 'Red FragCam', 'Graven', 'Phoenix Marker', 'Magna Carta',
+    'Stymphalian', 'Army Recon', 'Player Two', 'Canal Spray', 'Inferno', 'Griffin', 'Mosaico', 'Airlock', 'Dispatch', 'Electric Hive', 'Scrawl', 'Black Laminate', 'Monster Call', 'Fragments', 
+    'Mainframe', 'Legion of Anubis', 'Copper', 'Sunbaked', 'Circaetus', 'Converter', 'Sienna Damask', 'Cerberus', 'Violent Daimyo', 'Red Stone', 'Violet Murano', 'Nuclear Waste', 'Blood Tiger', 
+    'Jungle Tiger', 'Mechanism', 'Blue Steel', 'Hydra', 'Sunset Lily', 'Cold Fusion', 'Lichen Dashed', 'Glacier Mesh', 'Ivory', 'Safety Net', 'Delusion', 'Hot Snakes', 'Cobalt Quartz', 'Poseidon',
+    'Warbird', 'X-Ray', 'Panther', 'Night Ops', 'Blue Phosphor', 'Contractor', 'Rapid Eye Movement', 'Blizzard Marbleized', 'Decommissioned', 'Clear Polymer', "Apep's Curse", 'Traction', 'Necro Jr.', 
+    'Green Apple', 'Heirloom', 'Check Engine', 'Flora Carnivora', 'Pilot', 'The Bronze', 'Blueprint', 'Shapewood', 'Hemoglobin', 'Facility Sketch', 'Ensnared', 'Wild Child', 'Head Shot', 'Silver Quartz',
+    'Urban DDPAT', 'Grassland', 'Green Marine', 'Coach Class', 'Buzz Kill', 'Nightshade', 'Forest DDPAT', 'Neon Ply', 'Oxide Oasis', 'Frontside Misty', 'Frost Borre', 'Heat', 'Para Green', 
+    'Royal Paladin', 'Magnesium', 'Isaac', 'Primal Saber', 'Red DDPAT', 'Counter Terrace', 'Bone Pile', 'Briefing', 'Hive', 'Buddy', 'Twist', 'Cracked Opal', 'Distressed',
+    'Amber Slipstream', 'Stained Glass', 'Scumbria', 'Foresight', 'XOXO', 'Death Grip', 'Orange Kimono', 'VariCamo Blue', 'Cobalt Halftone', 'Stinger', 'Bengal Tiger', 'Quicksilver', 'Chameleon',
+    'Printstream', 'Prey', 'Triarch', 'Polar Mesh', 'Polymer', 'Wraiths', 'Bunsen Burner', 'Syd Mead', 'Prism Terrace', 'Acid Wash', 'Inlay', 'Murky', 'Astral Jörmungandr', 'Framework', 'Redline', 
+    'Verdant Growth', 'Twilight Galaxy', 'Ash Wood', 'Tigris', 'Iron Clad', 'Gold Brick', 'Elegant Vines', 'Moon in Libra', 'Jungle DDPAT', 'Reboot', 'Sergeant', 'Banana Cannon', 'Power Loader',
+    'Water Elemental', 'Grinder', 'Dark Age', 'Syndicate', 'Target Acquired', 'First Class', 'Caged Steel', 'Cut Out', 'Kill Confirmed', 'Tread', 'Franklin', 'Titanium Bit', 'Orion', 'PAW', 'Signal',
+    'Lab Rats', 'Tiger Moth', 'Jungle Thicket', 'Aztec', 'Button Masher', 'Snack Attack', 'Naga', 'Weasel', 'Exoskeleton', 'Desolate Space', 'Yellow Jacket', 'Sundown', 'Magma', "Sobek's Bite",
+    'Retribution', 'Flame Test', 'Banana Leaf', 'Grand Prix', 'Curse', 'Brake Light', 'Black Limba', 'Jungle', 'Facility Draft', 'Off World', 'Granite Marbleized', 'Chromatic Aberration', 
+    'Danger Close', 'Imperial Dragon', 'Waters of Nephthys', 'Ancient Ritual', 'Urban Rubble', 'Impire', 'Blue Laminate', 'Keeping Tabs', 'Aquamarine Revenge', 'Bullet Rain', 'Pathfinder',
+    'Demolition', 'Pulse', 'Orange DDPAT', 'Cassette', 'Crimson Kimono', 'Global Offensive', 'Bloodshot', 'Urban Dashed', 'Emerald Jormungandr', 'Desert Warfare', 'Charter', 'Bright Water', 
+    'Jungle Slipstream', 'Leaded Glass', 'Vino Primo', 'Medusa', 'Justice', 'Copper Galaxy', 'Cold Blooded', 'High Roller', 'Starlight Protector', 'Ruby Poison Dart', 'Crypsis', 'Forest Leaves',
+    'Zirka', 'Wildfire', 'Bioleak', 'Desert Blossom', 'Panther Camo', 'Aqua Terrace', 'Fubar', 'Schematic', 'Flame Jörmungandr', 'Echoing Sands', 'Slate', 'Hazard', 'Hard Water', 'Baroque Purple', 
+    'Cinquedea', 'Surfwood', 'Warhawk', 'Serenity', 'Humidor', 'Goo', 'Boreal Forest', 'Outbreak', 'Oceanic', 'Tiger Pit', 'Lionfish', 'Night Heist', 'Contrast Spray', 'Rangeen', 'Desert-Strike', 
+    'Death by Puppy', 'Space Cat', 'Macabre', 'Traveler', 'Spectre','Dream Glade', 'Flux', 'Kitbash', 'Point Disarray', 'Briar', 'Copper Borre', 'Armor Core', 'Jungle Dashed', 'Ancient Lore', 
+    'High Seas', 'Barricade', 'Crimson Blossom', 'Spalted Wood', 'Trigon', 'Poultrygeist', 'Brass', 'Urban Shock', 'Serum', 'Autumn Twilly', 'Mjolnir', 'Fever Dream', 'Judgement of Anubis', 
+    'Digital Mesh', 'Jaguar', 'Corporal', 'Flash Out', 'Wild Six', 'Midnight Lily', 'Nitro', 'Blaze Orange', 'Ossified', 'Caiman', 'Night Borre', 'Bone Forged', 'Indigo', 'System Lock', 'Dirt Drop',
+    'Cyberforce', 'Bronze Deco', 'Atlas', 'Breaker Box', 'Carved Jade', 'Blue Spruce', 'Navy Sheen', 'Sakkaku', 'Wings', 'Phobos', 'Sputnik', 'Exo', 'Sun in Leo', 'Hieroglyph', 'Night', 'Calf Skin', 
+    'Module', 'Space Race', 'Copper Coated', 'Liquidation', 'Basilisk', 'Wood Fired', 'Day Lily', 'Sunset Storm', 'Carbon Fiber', 'Nuclear Garden', 'Orange Filigree', 'Allure', 'Impact Drill', 
+    'Vandal', 'Drop Me', 'Co-Processor', 'Carnivore', 'Blast From the Past', 'Modest Threat', 'Facets', 'The Emperor', 'Powercore', 'Faulty Wiring', 'Lush Ruins', 'Submerged', 'Bulkhead', 
+    'Amber Fade', 'Destroyer', 'Colony IV', 'Oscillator', 'Berries And Cherries', 'Lifted Spirits', 'Dry Season', 'Orange Murano', "Minotaur's Labyrinth", 'Death Rattle', 'Freight', 'Turbo Peek',
+    'Red Rock', 'The Empress', 'Decimator', 'Metallic DDPAT', 'Olive Plaid', 'BOOM', 'Duality', 'Remote Control', 'Crimson Web', 'Mortis', 'Desert Hydra', 'Big Iron', 'Ticket to Hell', 'Parched', 
+    'Phantom Disruptor', 'Strats', 'Phantom', 'Mainframe 001', 'BI83 Spectrum', 'Silver', 'Shred', 'Runic', 'Temukau', 'Memento', 'Integrale', 'Aristocrat', 'Dazzle', 'Drift Wood', 'Red Leather',
+    'Knight', 'Water Sigil', 'Handgun', 'Business Class', 'Firefight', 'Full Stop', 'Torque', 'Core Breach', 'Sand Dune', 'Spider Lily', 'Kami', 'Necropos', 'Phosphor', 'Afterimage', 'Tom Cat',
+    'Heaven Guard', 'Skulls', 'Moonrise', 'Woodsman', 'Scaffold', 'Marina', 'Hot Shot', 'Gold Arabesque', 'Ventilator', 'Mud-Spec', 'Grim', 'Crime Scene', 'Leet Museo', 'Downtown', 'Stained', 
+    'Monster Mashup', 'Lumen', 'Faded Zebra', 'Visions', 'Damascus Steel', 'Neon Kimono', 'Corinthian', 'Styx', 'Hellfire', 'Baroque Orange', 'Blaze', 'Abyssal Apparition', 'Emerald Quartz', 
+    'Tempest', 'Condemned', 'Lead Conduit', 'Kiss♥Love', 'Desert Brush', 'SWAG-7', 'Snake Camo', 'Tread Plate', 'Purple DDPAT', 'Dragon Tattoo', 'Daybreak', 'Death by Kitty', 'Llama Cannon', 
+    'Kumicho Dragon', 'Mint Kimono', 'Elite Build', "Ol' Rusty", 'Xiangliu', 'Stone Mosaico', 'Praetorian', 'Code Red', 'Valence', 'Nightmare', 'Black & Tan', 'Black Tie', 'Akihabara Accept',
+    'Terrace', 'Ricochet', 'Ice Coaled', 'dev_texture', 'Cyanospatter', 'Bamboo Print', 'Pyre', 'Ghost Camo', 'Green Plaid', 'Palm', 'Fade', "Deaths Head", 'Featherweight', 'Balance', 
+    'Emerald Dragon', 'Junk Yard', 'Night Riot', 'Wicked Sick', 'Interlock', "Pandora's Box", 'Royal Legion', 'Containment Breach', 'ZX Spectron', 'Royal Consorts', 'Wild Lotus', 'Origami',
+    'Capillary', 'Verdigris', 'Poly Mag', 'Infrastructure', 'Neural Net', 'Abyss', 'Vendetta', 'Chemical Green', 'Red Quartz', 'Elite 1.6', 'Antique', 'Doomkitty', 'Gator Mesh', 'Desert Strike',
+    'Contamination', 'Dragonfire', 'Fire Serpent', 'Teardown', 'Acid Fade', 'Firestarter', 'Turf', 'Groundwater', 'Storm', 'Hades', 'New Roots', 'Cortex', 'Loudmouth', 'Snek-9', 
+    'Emerald Poison Dart', 'Commuter', 'Conspiracy', 'In Living Color', 'Nightwish', 'Imminent Danger', 'Forest Night', 'Walnut', 'Guerrilla', 'Condition Zero', 'Bamboo Forest', 'Crimson Tsunami',
+    'Popdog', 'Fuel Rod', 'The Prince', 'Neo-Noir', 'Desert Storm', 'Heavy Metal', 'Trigger Discipline', 'Leather', 'Poison Dart', 'Re-Entry', 'Gnarled', 'Mount Fuji', 'Guardian',
+    'Ghost Crusader', "Chanticos Fire", 'O.S.I.P.R.', 'Bone Machine', 'Tooth Fairy', 'Orbit Mk01', 'Orange Peel', 'Nuclear Threat', 'Emphorosaur-S', 'Ultralight', 'Atheris', 'Sugar Rush',
+    'Stone Cold', 'ScaraB Rush', 'Splash', 'Overgrowth', 'The Coalition', 'Tatter', 'Stalker', 'Bamboozle', 'Welcome to the Jungle', 'Photic Zone', 'Wave Spray', 'Dualing Dragons', 'Sacrifice',
+    'Contaminant', 'Harvester','Steel Delta', 'Neon Rider', 'Triqua', 'Motherboard', 'Music Box', 'Predator', 'Ocean Foam', 'Fire Elemental', 'Silk Tiger', 'Gold Bismuth', 'Bulldozer', 
+    'Clay Ambush', 'Corticera', 'Hyper Beast', 'Duelist', 'Gauss', 'Gungnir', 'Seasons', 'Emerald Pinstripe', 'Ice Cap', "Rameses Reach", 'Fennec Fox', 'Ziggy', 'Pit Viper', 'Jet Set', 
+    'Colony', 'Triumvirate', 'Eye of Athena', 'Muertos', 'Meltdown', 'Hand Cannon', 'Last Dive', 'Bone Mask', 'Twin Turbo', 'Royal Blue', 'Pole Position', 'Agent', 'Tornado', 'Catacombs',
+    'Darkwing', 'Tall Grass', 'Anolis', 'Momentum', 'Dark Water', 'Golden Coil', 'Hunting Blind', 'Modern Hunter', 'Monkey Business', 'Incinegator', 'Spitfire', 'Eye of Horus', 'Sand Dashed',
+    'Oil Change', 'Facility Negative', 'Coolant', 'Crazy 8', 'Nemesis', 'Labyrinth', 'VariCamo', 'Disco Tech', 'Atomic Alloy', 'Wasteland Princess', 'Ripple', 'Old Roots', 'Wasteland Rebel',
+    'Bloomstick', 'Gamma Doppler', 'Azure Zebra', 'Neoqueen', 'Cyber Security', 'Sand Mesh', 'Caramel', 'Dragon Lore', 'Cobra Strike', 'Supernova', 'Hexane', 'Yorick', 'Random Access',
+    'Zombie Offensive', 'Arctic Wolf', 'Black Lotus', 'Hand Brake', 'Slipstream', 'Sandstorm', 'Golden Koi', 'The Fuschia Is Now', 'Heist', 'Chopper', 'Neon Revolution', 'Riot', 
+    'Threat Detected', 'Propaganda', 'Hot Rod', 'Rust Coat', 'Anodized Navy', 'Chalice', 'Panthera onca', 'Parallax', 'Food Chain', 'Toybox', 'Emerald', 'Sea Calico', 'Light Rail', 
+    'Road Rash', 'Limelight', 'Reactor', 'Chronos', 'Petroglyph', 'Cirrus', 'The Executioner', 'Withered Vine', 'Army Sheen', 'Vulcan', 'Phoenix Stencil', 'Ultraviolet', 'Jambiya', 
+    'Uncharted', 'Special Delivery', 'Switch Board', 'Mandrel', 'Acheron', 'Copperhead', 'Winter Forest', 'Death Strike', 'Red Python', 'Irradiated Alert', 'Anodized Gunmetal',
+    'Jungle Spray', 'Fallout Warning', 'Retrobution', 'Assault', 'Classic Crate', 'Spring Twilly', 'Orange Anolis', 'Graphite', 'Ironwork', 'Polar Camo', 'Midnight Storm', 'Stainless',
+    'Cartel', 'Bloodsport', 'Master Piece', 'Hazard Pay', 'Djinn', 'Pipe Down', 'Wingshot', 'Worm God', 'Radiation Hazard', 'Houndstooth', 'Dusk Ruins', 'Boost Protocol',
+    'Mecha Industries', 'Malachite', 'Black Nile', 'Aloha', 'Evil Daimyo', 'Survivor Z', 'Morris', 'Drought', 'Bleached', 'Dragon Tech', 'Dragon King', 'Fleet Flock', 'Scorpion',
+    'Digital Architect', 'Undertow', 'Directive', 'Night Terror', 'Victoria', 'Highwayman', 'Metal Flowers', 'Shipping Forecast', 'Gunsmoke', 'Teclu Burner', 'Waves Perforated',
+    'Cobalt Core', 'Zander', 'Seabird', 'Cardiac', 'Avalanche', 'Mayan Dreams', 'Phoenix Blacklight', 'Chainmail', 'Dart', 'Bullet Queen', 'Sand Storm', 'Demeter', 'Windblown', 
+    'Grotto', 'Rose Iron', 'Red Filigree', 'Facility Dark', 'High Beam', 'Slashed', 'Survivalist', 'Exchanger', 'Ranger', 'Virus', 'Meow 36', 'Sand Spray', 'Tacticat', 'Koi',
+    'Urban Perforated', 'Green Laminate', 'Slide', 'The Traitor', 'Commemoration', 'Cyrex']
+    </script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Skin Master</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'skins/pistols/deserteagle/purple/Blaze.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/skin_master.css'%}" rel="stylesheet" />
+    </head>
+    <script>
+        function submitLeaderboards(){
+            domain = "127.0.0.1:8000" 
+            if(streak > 1){
+               
+                if (difficulty == "Easy") {
+
+                        window.location.replace("http://"+domain+"/SkinMaster/Survival/Easy/")
+                    
+            
+                } else if(difficulty == "Medium") {
+
+                        window.location.replace("http://"+domain+"/SkinMaster/Survival/Medium/")
+                    
+            
+                }else if(difficulty == "Hard") {
+
+                        window.location.replace("http://"+domain+"/SkinMaster/Survival/Hard/")
+                    
+                    
+                }else if(difficulty == "Expert") {
+
+                        window.location.replace("http://"+domain+"/SkinMaster/Survival/Ohnepixel/")
+                    
+            
+                }
+                else if(difficulty == "Ohnepixel") {
+
+                    window.location.replace("http://"+domain+"/SkinMaster/Survival/Ohnepixel/")
+                    
+                }
+                
+            }
+            else{
+                document.getElementById("leaderboard_prompt").innerText = "Eligibility Error -  Requires TWO correct skin names to submit to Leaderboard"
+            }
+
+        }
+
+        
+        </script>
+  
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: black;">
+            <div class="container px-lg-5">
+                <img href="{% url 'index' %}" src="/static/images/tools.png" width="20" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Machineguns -->
+        {{ m249|json_script:"m249"}}
+        {{ negev|json_script:"negev"}}
+         <!-- Shotguns -->
+        {{ mag7|json_script:"mag7"}}
+        {{ nova|json_script:"nova"}}
+        {{ sawedoff|json_script:"sawedoff"}}
+        {{ xm1014|json_script:"xm1014"}}
+         <!-- SMGs -->
+        {{ mac10|json_script:"mac10"}}
+        {{ mp5sd|json_script:"mp5sd"}}
+        {{ mp7|json_script:"mp7"}}
+        {{ mp9|json_script:"mp9"}}
+        {{ p90|json_script:"p90"}}
+        {{ ppbizon|json_script:"ppbizon"}}
+        {{ ump45|json_script:"ump45"}}
+         <!-- Pistols -->
+         {{ cz75auto|json_script:"cz75auto"}}
+         {{ deserteagle|json_script:"deserteagle"}}
+         {{ dualberettas|json_script:"dualberettas"}}
+         {{ fiveseven|json_script:"fiveseven"}}
+         {{ glock18|json_script:"glock18"}}
+         {{ p250|json_script:"p250"}}
+         {{ p2000|json_script:"p2000"}}
+         {{ r8revolver|json_script:"r8revolver"}}
+         {{ tec9|json_script:"tec9"}}
+         {{ usps|json_script:"usps"}}
+        <!-- Rifles -->
+        {{ ak47|json_script:"ak47"}}
+        {{ aug|json_script:"aug"}}
+        {{ awp|json_script:"awp"}}
+        {{ famas|json_script:"famas"}}
+        {{ g3sg1|json_script:"g3sg1"}}
+        {{ galilAR|json_script:"galilAR"}}
+        {{ m4a1s|json_script:"m4a1s"}}
+        {{ m4a4|json_script:"m4a4"}}
+        {{ scar20|json_script:"scar20"}}
+        {{ sg553|json_script:"sg553"}}
+        {{ ssg08|json_script:"ssg08"}}
+       
+        {{ pistols|json_script:"pistols"}}
+        {{ rifles|json_script:"rifles"}}
+        {{ machineguns|json_script:"machineguns"}}
+        {{ smgs|json_script:"smgs"}}
+        {{ shotguns|json_script:"shotguns"}}
+        {{ types|json_script:"types"}}
+        <!-- Content -->
+        <section id="selection_screen">
+          
+            <div style="align-items: center;text-align: center;">
+                <p1 style="font-size: 55px;"> Select Difficulty</p1><br>
+                <p2>The higher difficulty you select, the more types of skins you'll see - This can not be changed during the game.</p2><br>
+                <div style="height: 10px;">
+
+                    <div id = "leftboxtitle" >
+                        <p style="color: goldenrod;font-size: 35px;"></p>
+                        
+                    </div> 
+             
+                    <div id = "middleboxtitle" style="border: 0;color: goldenrod;font-size: 35px;" >
+                        <p style="color: goldenrod;font-size: 35px;">Presets</p>
+                   
+                       
+                      
+                    </div>
+                     
+                    <div id = "rightboxtitle" style="display: none;" >   
+                            <p style="color: goldenrod;font-size: 35px;padding-right: 70px;">Custom</p>
+                       
+                    </div>
+                   
+                </div>
+                <div id = "boxes">
+
+                    <div id = "leftbox" style="align-items: center;text-align: center;color: wheat;" >
+                  
+                              
+                    </div> 
+             
+                    <div class="center" id = "middlebox" style="border: 0;" >
+                        <div>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(209, 40, 27);width: 100%;vertical-align: middle;text-align: center;height: 40px;vertical-align: middle;font-size: 20px;">
+                                <input style="accent-color: #50a4db;" id="easy-checkbox" type="radio" name="difficulty-checkbox" value="easy" onclick=" selectDifficulty()" unchecked />
+                                Easy
+                            </label>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(60, 40, 31);width: 100%;vertical-align: middle;text-align: center;height: 40px;font-size: 20px;">
+                                <input style="accent-color: #1f08eb;" id="medium-checkbox" type="radio" name="difficulty-checkbox" value="medium" onclick=" selectDifficulty()" unchecked />
+                                Medium
+                            </label>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(209, 40, 27);width: 100%;vertical-align: middle;text-align: center;height: 40px;font-size: 20px;">
+                                <input style="accent-color: #8211c4;" id="hard-checkbox" type="radio" name="difficulty-checkbox" value="hard" onclick=" selectDifficulty()" unchecked />
+                                Hard
+                            </label>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(60, 40, 31);width: 100%;vertical-align: middle;text-align: center;height: 40px;font-size: 20px;">
+                                <input style="accent-color: #a31898;" id="expert-checkbox" type="radio" name="difficulty-checkbox" value="expert" onclick=" selectDifficulty()" unchecked />
+                                Expert
+                            </label>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(209, 40, 27);width: 100%;vertical-align: middle;text-align: center;height: 40px;font-size: 20px;">
+                                <input style="accent-color: #d61f1f;" id="Ohnepixel-checkbox" type="radio" name="difficulty-checkbox" value="Ohnepixel" onclick=" selectDifficulty()" checked />
+                                Ohnepixel
+                            </label>
+                            <label class="form-control middle-on-hover" style="background-color: rgb(60, 40, 31);width: 100%;vertical-align: middle;text-align: center;height: 40px;font-size: 20px;">
+                                <input style="accent-color: #dfee0f;" id="custom-checkbox" type="radio" name="difficulty-checkbox" value="custom" onclick=" selectDifficulty()" unchecked />
+                                Custom
+                            </label>
+                
+                
+                           </div>
+                              
+                   
+                       
+                      
+                    </div>
+                    <div>
+                        <div id = "rightbox" style="display: none;"  >   
+                            <div style="float: left;">
+                                <label class="form-control" style="background-color: #4e4e4e;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="smgs-checkbox" type="checkbox" name="smgs-checkbox" value="smgs" onclick="selectDifficulty()" checked />
+                                    Smgs
+                                  </label>
+                                  <label class="form-control" style="background-color: #7b7b80;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="rifles-checkbox" type="checkbox" name="rifles-checkbox" value="rifles" onclick="selectDifficulty()" checked />
+                                    Rifles
+                                  </label>
+                                  <label class="form-control" style="background-color: #4e4e4e;;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="pistols-checkbox" type="checkbox" name="pistols-checkbox" value="pistols" onclick="selectDifficulty()" checked />
+                                    Pistols
+                                  </label>
+                                  <label  class="form-control" style="background-color: #7b7b80;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="shotguns-checkbox" name="shotguns-checkbox" type="checkbox" value="shotguns" onclick="selectDifficulty()"  checked  />
+                                    Shotguns
+                                  </label>
+                                  <label class="form-control" style="background-color: #4e4e4e;;margin: 8px; width: 190px;vertical-align: middle;text-align: center;">
+                                    <input id="machineguns-checkbox" type="checkbox" name="machineguns-checkbox" value="machineguns" onclick="selectDifficulty()" checked />
+                                    Machineguns
+                                  </label>
+                            </div>
+                        </div  >
+                        <div id="rightbox2" style="display: none;" >
+                            <div style="float: right;" >
+                                <label class="form-control" style="background-color: #421317;margin: 8px; width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="covert-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()"  checked />
+                                    Covert 
+                                  </label>
+                                
+                                  <label class="form-control" style="background-color: #5c1153;margin: 8px; width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="classified-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()" checked />
+                                    Classified   
+                                  </label>
+                    
+                                  <label  class="form-control" style="background-color: #241a3b;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="restricted-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()" checked />
+                                   Restricted  
+                                  </label>
+                    
+                                  <label class="form-control" style="background-color: #0b1666;margin: 8px;width: 150px;vertical-align: middle;text-align: center;">
+                                    <input id="mil-mpec-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()" checked />
+                                    Mil-spec 
+                                  </label>
+                    
+                                  <label class="form-control" style="background-color: #1a606e;margin: 8px;width: 220px;vertical-align: middle;text-align: center;">
+                                    <input id="industrial-grade-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()" checked />
+                                    Industrial Grade
+                                  </label>
+        
+                                  <label class="form-control" style="background-color: grey;margin: 8px;width: 210px;vertical-align: middle;text-align: center;">
+                                    <input id="consumer-grade-checkbox" type="checkbox" name="checkbox-checked" onclick="selectDifficulty()" checked  />
+                                    Consumer Grade
+                                  </label>
+                            </div>
+                        </div>   
+                    </div>
+                
+                </div>
+               <br><br><br><br>
+            
+            <div>
+                <p1 style="font-size: 55px;"> Selected:</p1>
+                <p id="selected_difficulty" style="font-size: 30px;font-weight: bold;color: goldenrod;"> Ohnepixel</p>
+                                <!-- HTML !-->
+                <button id="start_button" class="button-73" role="button" style="height: auto;width: 25%;" onclick="start_game()">Start Game</button>
+                <br><br><br><p id="main_menu_redirect" onclick="play_button()">Main Menu</p>
+            </div>
+        <script>
+
+            function start_game(){
+                streak = 0
+                document.getElementById("practise_game").style.display = "block"
+                document.getElementById('streak').innerText = "0"
+                try{
+                    document.getElementById(column1[3]).remove();
+                    column1= ""
+                    document.getElementById("column1").style.backgroundColor = "rgb(209, 40, 27)"
+                    document.getElementById("column1").style.borderColor = "black"
+                }catch{
+                    
+                }
+                try {
+                    document.getElementById(column2[3]).remove();
+                    column2= ""
+                    document.getElementById("column2").style.backgroundColor = "rgb(60, 40, 31)"
+                    document.getElementById("column2").style.borderColor = "black"
+                } catch{
+
+                }
+                try {
+                    document.getElementById(column3[3]).remove();
+                    column3 = ""
+                    document.getElementById("column3").style.backgroundColor = "rgb(209, 40, 27)"
+                    document.getElementById("column3").style.borderColor = "black"
+                } catch {
+                    
+                }
+                try {
+                    document.getElementById(column4[3]).remove();
+                    column4 = ""
+                    document.getElementById("column4").style.backgroundColor = "rgb(60, 40, 31)"
+                    document.getElementById("column4").style.borderColor = "black"
+                } catch {
+                    
+                }
+                try {
+                    document.getElementById(column5[3]).remove();
+                    column5 = ""
+                    document.getElementById("column5").style.backgroundColor = "rgb(209, 40, 27)"
+                    document.getElementById("column5").style.borderColor = "black"
+                } catch {
+                    
+                }
+                try {
+                    document.getElementById(column6[3]).remove();
+                    column6 = ""
+                    document.getElementById("column6").style.backgroundColor = "rgb(60, 40, 31)"
+                    document.getElementById("column6").style.borderColor = "black"
+                    } catch {
+                    
+                }
+                try {
+                    document.getElementById(column7[3]).remove();
+                    column7 = ""
+                    document.getElementById("column7").style.backgroundColor = "rgb(209, 40, 27)"
+                    document.getElementById("column7").style.borderColor = "black"
+                } catch {
+                    
+                }
+                try {
+                    document.getElementById(column8[3]).remove();
+                    column8 = ""
+                    document.getElementById("column8").style.backgroundColor = "rgb(60, 40, 31)"
+                    document.getElementById("column8").style.borderColor = "black"
+
+                } catch {
+                 
+                }
+                try {
+                    document.getElementById(column9[3]).remove();
+                    column9 = ""
+                    document.getElementById("column9").style.backgroundColor = "rgb(209, 40, 27)"
+                    document.getElementById("column9").style.borderColor = "black"
+
+                } catch {
+                    
+                }
+                try {
+                    document.getElementById(column10[3]).remove();
+                    column10 = ""
+                    document.getElementById("column10").style.backgroundColor = "rgb(60, 40, 31)"
+                    document.getElementById("column10").style.borderColor = "black"
+                } catch {
+                    
+                }
+
+                
+                document.getElementById("game_over_screen").style.display = "none"
+                if(document.getElementById("custom-checkbox").checked){
+                    skin_count = getSelectedSkinsUrls().length
+                }
+                else{
+                    skin_count = getSelectedSkinsUrlsMode().length
+                }
+                document.getElementById("selection_screen").style.display = "none"
+                document.getElementById("game").style.display = "block"
+                
+                document.getElementById("difficulty_value").innerText= determineDifficulty()
+
+            }
+            function getTypeSelectColoursMode(gun_type){
+    
+                smgs = JSON.parse(document.getElementById(gun_type).textContent)
+                type_select_colours = []
+            
+                for (let i = 0; i < smgs.length; i++){
+                
+                    if(smgs[i] != ""){
+                        gunColours =JSON.parse(document.getElementById(smgs[i]).textContent)
+                        if(include_coverts == true){
+                            for (x in gunColours["red"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/red\\"+gunColours["red"][x]+".png")
+                            }
+                        }   
+                        if(include_classifieds == true){
+                        
+                            for (x in gunColours["pink"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/pink\\"+gunColours["pink"][x]+".png")
+                            }
+                        }
+                        if(include_restricted == true){
+                            for (x in gunColours["purple"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/purple\\"+gunColours["purple"][x]+".png")
+                            }
+                        }
+                        if(include_mil_spec == true){
+                            for (x in gunColours["blue"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/blue\\"+gunColours["blue"][x]+".png")
+                            }
+                        }
+                        if(include_industrial_grade== true){
+                            for (x in gunColours["light_blue"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/light_blue\\"+gunColours["light_blue"][x]+".png")
+                            }
+                        }
+                        if(include_consumer_grade == true){
+                            for (x in gunColours["grey"]){
+                                type_select_colours.push("./static/skins/"+gun_type+"/"+smgs[i]+"/grey\\"+gunColours["grey"][x]+".png")
+                            }
+                        }
+                        
+                    }
+                
+                }
+                return type_select_colours
+            }
+
+            function getSelectedSkinsUrlsMode(){
+                
+                skins = []
+                if (include_pistols == true) {
+                    for (i in getTypeSelectColoursMode("pistols") ){
+                        skins.push(getTypeSelectColoursMode("pistols")[i])
+                    }  
+                } 
+                if(include_machineguns== true) {
+                    for (i in getTypeSelectColoursMode("machineguns")){
+                        skins.push(getTypeSelectColoursMode("machineguns")[i])
+                    }
+                }
+                if(include_smgs== true) {
+                    for (i in getTypeSelectColoursMode("smgs")){
+                        skins.push(getTypeSelectColoursMode("smgs")[i])
+                    }
+                } 
+                if(include_rifles== true) {
+                    for (i in getTypeSelectColoursMode("rifles") ){
+                        skins.push(getTypeSelectColoursMode("rifles")[i])
+                    }
+                } 
+                if(include_shotguns == true) {
+                    for (i in getTypeSelectColoursMode("shotguns")){
+                        skins.push(getTypeSelectColoursMode("shotguns")[i])
+                    }
+                }
+                //alert(skins)
+                return skins
+            }
+
+
+            var skins = []
+            function selectDifficulty(){
+                difficulty = ""
+                document.getElementById("rightbox").style.display = "none"
+                document.getElementById("rightbox2").style.display = "none"
+                document.getElementById("rightboxtitle").style.display = "none"
+                document.getElementById("start_button").style.display = "inline"
+                if (document.getElementById("easy-checkbox").checked == true) {
+                    difficulty = "Easy"
+                    include_shotguns = false
+                    include_smgs = true
+                    include_rifles = true
+                    include_pistols = true
+                    include_machineguns = false
+                
+                    include_coverts = true
+                    include_classifieds = true
+                    include_restricted = true
+                    include_mil_spec = false
+                    include_industrial_grade = false
+                    include_consumer_grade = false
+                    skins =  getSelectedSkinsUrlsMode()
+                } 
+                else if(document.getElementById("medium-checkbox").checked== true) {
+                    difficulty = "Medium"
+                    include_shotguns = true
+                    include_smgs = true
+                    include_rifles = true
+                    include_pistols = false
+                    include_machineguns = false
+                
+                    include_coverts = true
+                    include_classifieds = true
+                    include_restricted = true
+                    include_mil_spec = true
+                    include_industrial_grade = false
+                    include_consumer_grade = false
+                    skins =  getSelectedSkinsUrlsMode()
+                }
+                else if(document.getElementById("hard-checkbox").checked== true) {
+                    difficulty = "Hard"
+                    include_shotguns = false
+                    include_smgs = true
+                    include_rifles = true
+                    include_pistols = true
+                    include_machineguns = false
+                
+                    include_coverts = true
+                    include_classifieds = true
+                    include_restricted = true
+                    include_mil_spec = true
+                    include_industrial_grade = false
+                    include_consumer_grade = false
+                    skins =  getSelectedSkinsUrlsMode()
+                } 
+                else if(document.getElementById("expert-checkbox").checked== true) {
+                    difficulty = "Expert"
+                    include_shotguns = true
+                    include_smgs = true
+                    include_rifles = true
+                    include_pistols = true
+                    include_machineguns = true
+                
+                    include_coverts = true
+                    include_classifieds = true
+                    include_restricted = true
+                    include_mil_spec = true
+                    include_industrial_grade = false
+                    include_consumer_grade = false
+                    skins =  getSelectedSkinsUrlsMode()
+                } 
+                else if(document.getElementById("Ohnepixel-checkbox").checked == true) {
+                    difficulty = "Ohnepixel"
+                    include_shotguns = true
+                    include_smgs = true
+                    include_rifles = true
+                    include_pistols = true
+                    include_machineguns = true
+                
+                    include_coverts = true
+                    include_classifieds = true
+                    include_restricted = true
+                    include_mil_spec = true
+                    include_industrial_grade = true
+                    include_consumer_grade = true
+                    skins =  getSelectedSkinsUrlsMode()
+                }
+                else if(document.getElementById("custom-checkbox").checked == true) {
+                    document.getElementById("rightbox").style.display = "block"
+                    document.getElementById("rightbox2").style.display = "block"
+                    document.getElementById("rightboxtitle").style.display = "block"
+                    
+                    skin_count_temp = getSelectedSkinsUrls().length
+                    skins =  getSelectedSkinsUrls()
+
+                    if (skin_count_temp > 1000) {
+                        difficulty_temp = "Ohnepixel"
+                    }
+                    else  if (skin_count_temp > 850 ) {
+                        difficulty_temp = "Expert"
+                    }
+                    else  if (skin_count_temp >  650 ) {
+                        difficulty_temp = "Hard"
+                    }
+                    else if (skin_count_temp >  500) {
+                        difficulty_temp = "Medium"
+                    }
+                    else if (skin_count_temp >  400) {
+                        difficulty_temp = "Easy"
+                    }
+                    else{
+                        document.getElementById("start_button").style.display = "none"
+                        difficulty_temp = "None - Please select more options"
+                        
+                    }
+                    difficulty = "Custom: " +  difficulty_temp 
+                }
+                document.getElementById("selected_difficulty").innerText = difficulty
+               
+    
+  
+  
+   
+
+              
+                //get skins from selected criteria compare with practise function
+                //detect preset change - on click send value and run new function to change custom preset to match difficulty
+                //custom option enables and disables right buttons
+            }
+        </script>
+        </section>
+        <section id="game" style="align-items: center;text-align: center;display: none;"> 
+            <p1 style="font-size: 55px;"> <b>Survival</b></p1><br>
+             <!--<div style="width: 100%;float: left;background-color: aqua;height: 300px;" id="test" onclick=" updateGuns('awp','blue','rifles')">
+                CLick for images</div><br> -->
+            </div>
+            <main id="boxes">
+     
+            <div id="column1" style="background-color: rgb(209, 40, 27);"></div>
+            <div id="column2" style="background-color: rgb(60, 40, 31);"></div>
+            <div id="column3" style="background-color: rgb(209, 40, 27);"></div>
+            <div id="column4" style="background-color: rgb(60, 40, 31);"></div>
+            <div id="column5" style="background-color: rgb(209, 40, 27);"></div>
+            <div id="column6" style="background-color: rgb(60, 40, 31);"></div>
+            <div id="column7" style="background-color: rgb(209, 40, 27);"></div>
+            <div id="column8" style="background-color: rgb(60, 40, 31);"></div>
+            <div id="column9" style="background-color: rgb(209, 40, 27);"></div>
+            <div id="column10" style="background-color: rgb(60, 40, 31);"></div>
+            <div id="column11" style="background-color: rgb(209, 40, 27);"></div>
+            </main>
+            <div style="background-color: rgba(3, 37, 9, 0.418);height: 50px;text-align: center;vertical-align: middle;color: white;font-size: 30px;font-weight: bold;" id="practise_game" onclick="survivalGame()">Click to Start
+                <!DOCTYPE html>   </div>
+         
+
+            <!--Make sure the form has the autocomplete function switched off:-->
+           <br>
+                <div id = "boxes">
+
+                    <div id = "leftbox" >
+                        <div id="middle_left">
+                            <p style="font-size: 35px;font-weight: bold;"> Game information </p>
+                            <p style="font-size: 25px;display:inline-block;font-weight: bold;" id="streak Text;font-size:50px"> Streak:</p>   <p style="font-size: 25px; display:inline-block;" id="streak"> 0</p><br>
+                            <p style="font-size: 25px; display:inline-block;font-weight: bold;" id="Estimated Rank"> Difficulty: </p>   <p style="font-size: 25px; display:inline-block;" id="difficulty_value"> Pending game start </p><br>
+                              
+                        </div>
+                    </div> 
+             
+                    <div class="center" id = "middlebox" style="border: 0;" >
+                        <div  class="center" style="display: flex;width: 415px;border: 0;">
+                            <label class="form-control" style="background-color: #421317;margin: 8px; width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" value="red" unchecked style="accent-color: #421317;" />
+                                
+                            </label>
+                            <label class="form-control" style="background-color: #5c1153;margin: 8px; width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" unchecked  value="pink" style="accent-color: #5c1153;" />
+                    
+                            </label>
+            
+                            <label class="form-control" style="background-color: #241a3b;margin: 8px;width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" value="purple" style="accent-color: #241a3b;" />
+                        
+                            </label>
+            
+                            <label class="form-control" style="background-color: #0b1666;margin: 8px;width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" checked value="blue"  style="accent-color: #0b1666;" />
+                    
+                            </label>
+            
+                            <label class="form-control" style="background-color: #1a606e;margin: 8px;width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" unchecked value="light_blue" style="accent-color: #1a606e;" />
+                    
+                            </label>
+
+                            <label class="form-control" style="background-color: grey;margin: 8px;width: 50px;text-align: center;">
+                            <input type="radio" name="colour_checkbox" unchecked value="grey" style="accent-color: grey;" />
+                    
+                            </label>
+                           
+                        </div>
+                        <div>
+                            <div class="autocomplete" style="width:300px;">
+                                <input id="myInput" type="text" placeholder="Enter Answer">
+                            </div>
+                                <input id="submit_button" type="submit" onclick="testInputs()">
+                                <p id="missing_field_prompt" style="color: red;"></p>
+                        </div>
+
+                        
+                       
+                      
+                    </div>
+                     
+                    <div id = "rightbox">   
+                        <div style="float: left;">
+                   
+                        </div>
+                    </div>
+                    <div id="rightbox2">
+                        <div style="float: right;">
+                            
+                        </div>
+                    </div>
+                </div>
+
+             <!-- Skin look up 
+            Need a way to navigate via gun and rarity colour to look up 
+            need a practise game that has no score attached
+            -->
+         
+        </section>
+        <section style="text-align: center;">
+            <div id="game_over_screen" style="display: none;">
+                <p1 style="color: white;font-size: 100px;">Game Over!</p1>
+                <div>
+                    <p style="font-size: 20px;display:inline-block; ">You put </p>
+                    <p style="font-size: 20px;display:inline-block;"  id="selectedColour"></p>
+                    <p style="font-size: 20px;display:inline-block;font-weight: bold; " id="selectedSkin"></p>
+                    <p style="font-size: 20px;display:inline-block; "> but the answer was</p>
+                    <p style="font-size: 20px;display:inline-block;"  id="answerColour"></p>
+                    <p style="font-size: 20px;display:inline-block;font-weight: bold; " id="answerSkin"></p>
+                </div>
+            
+                
+                <p style="font-size: 20px;"> You scored: </p>
+                <p style="font-size: 25px;" id="score"> </p>
+                <div style="padding-right: 50px;display: inline-block;">
+                    <button id="start_button" class="button-73" role="button" style="height: auto;width: 400px;height: 100px;" onclick="start_game()">Play Again</button>
+                </div>
+                <div style="display: inline-block;"> 
+                    <button onclick="submitLeaderboards()" id="start_button" class="button-73" role="button" style="height: auto;width: 400px;height: 100px;">Submit to Leaderboard</button>
+                </div>
+                <p id="leaderboard_prompt" style="color: red;"></p>
+              
+          
+                <p id="main_menu_redirect" onclick="play_button()">Main Menu</p>
+            </div>
+           
+        </section>
+     
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);position: fixed;text-align: center;bottom: 0px;width: 100%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/skin_master_survive.js' %}"></script>
+        <script src="{% static 'js/skin_datascript_survival.js' %}"></script>
+    </body>
+</html>
+

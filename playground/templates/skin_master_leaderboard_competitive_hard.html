@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Skin Master</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'skins/pistols/deserteagle/purple/Blaze.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/skin_master.css'%}" rel="stylesheet" />
+    </head>
+
+    <body  style="background-color: black;">
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: black;">
+            <div class="container px-lg-5">
+              <img href="{% url 'index' %}" src="/static/images/tools.png" width="20" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        {{ leaderboard_data|json_script:"leaderboard_data"}}
+        <section style="margin: auto;padding: auto;text-align: center;align-items: center;width: 100%;"> 
+            <div style="text-align: center;align-items: center;width: 100%;" >
+                <p1 style="font-size: 70px;color: goldenrod;"><b>Competitive Leaderboard - Hard</b></p1><br>
+                <div class="dropdown">
+                    <button class="dropbtn"><b>Change Difficulty</b></button>
+
+                      <style>
+                        .radio-button-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 24px;
+                            }
+
+                            .radio-button {
+                            display: inline-block;
+                            position: relative;
+                            cursor: pointer;
+                            padding-left: 10px;
+                            }
+
+                            .radio-button__input {
+                            position: absolute;
+                            opacity: 0;
+                            width: 0;
+                            height: 0;
+                            }
+
+                            .radio-button__label {
+                            display: inline-block;
+                            padding-left: 30px;
+                            margin-bottom: 10px;
+                            position: relative;
+                            font-size: 15px;
+                            color: #f2f2f2;
+                            font-weight: 600;
+                            cursor: pointer;
+                            text-transform: uppercase;
+                            transition: all 0.3s ease;
+                            }
+
+                            .radio-button__custom {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 2px solid #555;
+                            transition: all 0.3s ease;
+                            }
+
+                            .radio-button__input:checked + .radio-button__label .radio-button__custom {
+                            background-color: goldenrod;
+                            border-color: transparent;
+                            transform: scale(0.8);
+                            box-shadow: 0 0 20px #c3b85680;
+                            }
+
+                            .radio-button__input:checked + .radio-button__label {
+                            color: #4c8bf5;
+                            }
+
+                            .radio-button__label:hover .radio-button__custom {
+                            transform: scale(1.2);
+                            border-color: #4c8bf5;
+                            box-shadow: 0 0 20px #4c8bf580;
+                            }
+
+
+
+
+
+
+                      </style>
+                    <div class="dropdown-content">
+                      <a href="{% url 'skin_master_leaderboard_competitive_easy' %}">Easy</a>
+                      <a href="{% url 'skin_master_leaderboard_competitive_medium' %}">Medium</a>
+                      <a href="{% url 'skin_master_leaderboard_competitive_hard' %}">Hard</a>
+                      <a href="{% url 'skin_master_leaderboard_competitive_expert' %}">Expert</a>
+                      <a href="{% url 'skin_master_leaderboard_competitive_ohnepixel' %}">OhnePixel</a>
+                    </div>
+
+                   
+            </div>
+            <div>
+                <div class="radio-button-container">
+                    <div class="radio-button">
+                    <input  type="radio" class="radio-button__input" id="radio1" name="radio-group" onclick="change_screen()" checked>
+                    <label class="radio-button__label" for="radio1" >
+                      <span class="radio-button__custom"></span>
+                  
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input type="radio" class="radio-button__input" id="radio2" name="radio-group"onclick="change_screen()">
+                    <label class="radio-button__label" for="radio2">
+                      <span class="radio-button__custom"></span>
+          
+                    </label>
+                  </div>
+                  
+                  </div>
+            </div>
+          
+            <script>
+                function change_screen(){
+                    url = window.location.href.split("/")
+                    if(document.getElementById('radio2').checked){
+                        if(window.location.href.split("/")[5] == "Competitive"){
+                           url[5] = "Survival"
+                        
+                           window.location.replace(String(url).replace(/,/g,"/"))
+                    
+                        }
+                        else{
+
+                        }
+                        
+                    }
+                    else{
+                   
+                    }
+                }
+            </script>
+            <div>
+                <style> 
+                    table { 
+                        border-collapse: collapse; 
+                        width: 100%; 
+                    } 
+                      
+                    th, td { 
+                        text-align: left; 
+                        font-size: 30px;
+                        padding: 8px; 
+                        color: white;
+                        height: 56px;
+                        
+                    } 
+                    .blackborder{
+                        background-color: black;
+                        text-align: left; 
+                        font-size: 30px;
+                        
+                        color: white;
+                        height: 15px;
+                    }
+                    tr{
+                        background-color: rgb(197, 177, 62);
+        
+
+                   
+                    }
+                    tr:nth-child(even) { 
+                        background-color: rgb(138, 118, 6); 
+                    } 
+                </style> 
+            </head> 
+            <script>
+                function sortTable() {
+                  var table, rows, switching, i, x, y, shouldSwitch;
+                  table = document.getElementById("leaderboard_table");
+                  switching = true;
+                  /*Make a loop that will continue until
+                  no switching has been done:*/
+                  while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                      //start by saying there should be no switching:
+                      shouldSwitch = false;
+                      /*Get the two elements you want to compare,
+                      one from current row and one from the next:*/
+                      x = rows[i].getElementsByTagName("TD")[5];
+                    
+                 
+                      y = rows[i + 1].getElementsByTagName("TD")[5];
+                   
+                      //check if the two rows should switch place:
+                      if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                      }
+                    }
+                    if (shouldSwitch) {
+                      /*If a switch has been marked, make the switch
+                      and mark that a switch has been done:*/
+                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                      switching = true;
+                    }
+                  }
+                }
+                   
+                    function populateLeaderboard(){
+                        
+                        data = JSON.parse(document.getElementById("leaderboard_data").textContent)
+                        
+                        for (let i = 0; i < data.length; i++){
+                            table = document.getElementById("leaderboard_table");
+                            row = table.insertRow(-1);
+                            row.id =data[i].playerID
+                            // Create table cells
+                            let playerID = row.insertCell(0);
+                            let name = row.insertCell(1);
+                            let length = row.insertCell(2);
+                            let streak = row.insertCell(3);
+                            let rank = row.insertCell(4);
+                            let score = row.insertCell(5);
+                    
+                        
+                            // Add data to c1 and c2
+                            playerID.innerText = data[i].playerID
+                            name.innerText = data[i].name
+                            length.innerText =  data[i].length
+                            streak.innerText = data[i].streak
+                            rank.innerText = data[i].rank
+                            score.innerText =  data[i].score
+                  
+
+                        }
+                     
+                    }
+             
+                </script>
+          
+                <div style="padding: 5%;padding-top: 0%;">
+                    <table id="leaderboard_table">
+                        <tr style="background-color: rgb(138, 118, 6)"> 
+                            <td><b>Player ID</b></td> 
+                            <td><b>Name</b></td> 
+                            <td><b>Length</b></td>
+                            <td><b>Streak</b></td> 
+                            <td><b>Rank</b></td>
+                            <td><b>Score</b></td>
+                       
+                        </tr> 
+                        <tr > 
+                            <td class="blackborder" ></td> 
+                            <td class="blackborder"></td> 
+                            <td class="blackborder"></td> 
+                            <td class="blackborder"></td>
+                            <td class="blackborder"></td>
+                            <td class="blackborder" style="color: black;font-size: 3px;">999</td>
+                        </tr> 
+              
+                          
+                 
+                    </table> 
+                </div>
+
+                <script>
+                
+                    populateLeaderboard()
+                    sortTable()
+        
+                </script>
+                
+            </div>
+             <!-- Skin look up 
+            Need a way to navigate via gun and rarity colour to look up 
+            need a practise game that has no score attached
+            -->
+        <!-- Footer-->
+        </section>
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);position: fixed;text-align: center;bottom: 0px;width: 100%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/skin_master.js' %}"></script>
+    </body>
+</html>
+

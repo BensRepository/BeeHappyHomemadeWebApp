@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+     
+{% load static %}
+
+    <head>
+         <!-- Core theme JS-->
+        <script src="{% static 'js/bindscript.js' %}"></script>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CSTools Case Calculator</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'cases/Chroma_2.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/bind.css'%}" rel="stylesheet" />
+    </head>
+    <body style="background-color: rgb(48, 48, 47);">
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+            <div class="container px-lg-5">
+                <img href="{% url 'index' %}" src="/static/images/tools.png" width="20" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link"  href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link active"aria-current="page" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {{ filenames|json_script:"Filenames" }}
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <marquee height="1px" scrollamount="12" behavior="scroll" style="height: 20px;" >
+                <strong>CS2 Update!</strong> Some of these binds may not work in CS2 - Updates to this page coming soon!
+            </marquee>
+          
+          </div>
+        <section>
+          
+            <div class="container" style="padding-bottom: 40px;">
+                <h3 class="textStyle">1. Select a key you wish to bind.</h3>
+                <div id="keyboardDiv">
+                    <div id="row1" class="row">
+                        <div id="F1" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F1')">F1</div>
+                        <div id="F2" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F2')">F2</div>
+                        <div id="F3" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F3')">F3</div>
+                        <div id = "F4" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F4')">F4</div>
+                        <div id = "F5" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F5')">F5</div>
+                        <div id = "F6" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F6')">F6</div>
+                        <div id = "F7" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F7')">F7</div>
+                        <div id = "F8" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F8')">F8</div>
+                        <div id = "F9" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F9')">F9</div>
+                        <div id = "F10" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F10')">F10</div>
+                        <div id = "F11" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F11')">F11</div>
+                        <div id = "F12" class="keyboardKey parent rowOneKey" onclick="keyboardKeyClick('F12')">F12</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                    </div>
+                    <div id="row2" class="row">
+                        <div id = "`" class="keyboardKey parent rowTwoKey" style="width: 45.03px;"onclick="keyboardKeyClick('`')">`</div>
+                        <div id = "1" class="keyboardKey parent rowTwoKey" style="width: 44px;"onclick="keyboardKeyClick('1')">1</div>
+                        <div id = "2" class="keyboardKey parent rowTwoKey" style="width: 44.28px;"onclick="keyboardKeyClick('2')">2</div>
+                        <div id = "3" class="keyboardKey parent rowTwoKey" style="width: 44.25px;"onclick="keyboardKeyClick('3')">3</div>
+                        <div id = "4" class="keyboardKey parent rowTwoKey" style="width: 44.27px;"onclick="keyboardKeyClick('4')">4</div>
+                        <div id = "5" class="keyboardKey parent rowTwoKey" style="width: 44.28px;"onclick="keyboardKeyClick('5')">5</div>
+                        <div id = "6" class="keyboardKey parent rowTwoKey" style="width: 44.22px;"onclick="keyboardKeyClick('6')">6</div>
+                        <div id = "7" class="keyboardKey parent rowTwoKey" style="width: 44.28px;"onclick="keyboardKeyClick('7')">7</div>
+                        <div id = "8" class="keyboardKey parent rowTwoKey" style="width: 44.21px;"onclick="keyboardKeyClick('8')">8</div>
+                        <div id = "9" class="keyboardKey parent rowTwoKey" style="width: 44.22px;"onclick="keyboardKeyClick('9')">9</div>
+                        <div id = "0" class="keyboardKey parent rowTwoKey" style="width: 44.22px;"onclick="keyboardKeyClick('0')">0</div>
+                        <div id = "-" class="keyboardKey parent rowTwoKey" style="width: 43.20px;"onclick="keyboardKeyClick('-')">-</div>
+                        <div id = "=" class="keyboardKey parent rowTwoKey" style="width: 44.22px;"onclick="keyboardKeyClick('=')">=</div>
+                        <div id = "Backspace" class="keyboardKey parent rowTwoKey" style="width: 92.84px;"onclick="keyboardKeyClick('Backspace')">Backspace</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "numLock" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('numLock')">Num Lock</div>
+                        <div id = "kp_slash" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_slash')">/</div>
+                        <div id = "kp_multiply" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_multiply')">*</div>
+                        <div id = "kp_minus" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_minus')">-</div>
+                    </div>
+                    <div id="row3" class="row">
+                        <div id = "Tab" class="keyboardKey parent" style="width: 50px;" onclick="keyboardKeyClick('Tab')">Tab</div>
+                        <div id = "Q" class="keyboardKey parent" style="width: 47.45px;" onclick="keyboardKeyClick('Q')">Q</div>
+                        <div id = "W" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('W')">W</div>
+                        <div id = "E" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('E')">E</div>
+                        <div id = "R" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('R')">R</div>
+                        <div id = "T" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('T')">T</div>
+                        <div id = "Y" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('Y')">Y</div>
+                        <div id = "U" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('U')">U</div>
+                        <div id = "I" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('I')">I</div>
+                        <div id = "O" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('O')">O</div>
+                        <div id = "P" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('P')">P</div>
+                        <div id = "[" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('[')">[</div>
+                        <div id = "]" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick(']')">]</div>
+                        <div id = "\" class="keyboardKey parent rowThreeKey"onclick="keyboardKeyClick('\\')">\</div>
+                        <div id = "" class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "" class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "" class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "" class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "" class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "kp_home" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_home')">7</div>
+                        <div id = "kp_uparrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_uparrow')">8</div>
+                        <div id = "kp_pgup" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_pgup')">9</div>
+                        <div id = "kp_plus" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_plus')">+</div>
+                    </div>
+                    <div id="row4" class="row">
+                        <div id = "Capslock" class="keyboardKey parent" style="width: 77px;"onclick="keyboardKeyClick('Capslock')">Capslock</div>
+                        <div id = "A" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('A')">A</div>
+                        <div id = "S" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('S')">S</div>
+                        <div id = "D" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('D')">D</div>
+                        <div id = "F" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('F')">F</div>
+                        <div id = "G" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('G')">G</div>
+                        <div id = "H" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('H')">H</div>
+                        <div id = "J" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('J')">J</div>
+                        <div id = "K" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('K')">K</div>
+                        <div id = "L" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('L')">L</div>
+                        <div id = ";" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick(';')">;</div>
+                        <div id = "'" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('test')">'</div>
+                        <div id = "#" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('#')">#</div>
+                        <div id = "Enter" class="keyboardKey parent rowFourKey"onclick="keyboardKeyClick('Enter')">Enter</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id="kp_leftarrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_leftarrow')">4</div>
+                        <div id="kp_5" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_5')">5</div>
+                        <div id="kp_rightarrow"  class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_rightarrow')">6</div>
+                        <div id="kp_plus"  class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_plus')">+</div>
+                    </div>
+                    <div id="row5" class="row">
+                        <div id= "Shift"class="keyboardKey parent rowFiveKey" style="width: 60px;"onclick="keyboardKeyClick('Shift')">Shift</div>
+                        <div id="Z" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('Z')">Z</div>
+                        <div id="X" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('X')">X</div>
+                        <div id="C" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('C')">C</div>
+                        <div id="V" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('V')">V</div>
+                        <div id="B" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('B')">B</div>
+                        <div id="N" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('N')">N</div>
+                        <div id="M" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('M')">M</div>
+                        <div id="," class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick(',')">,</div>
+                        <div id="." class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('.')">.</div>
+                        <div id="/" class="keyboardKey parent rowFiveKey"onclick="keyboardKeyClick('/')">/</div>
+                        <div id = "Shift2" class="keyboardKey parent rowFiveKey" style="width: 60px;"onclick="keyboardKeyClick('Shift2')">Shift</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "uparrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('uparrow')">↑</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id = "kp_end" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_end')">1</div>
+                        <div id = "kp_downarrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_downarrow')">2</div>
+                        <div id = "kp_pgdn" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_pgdn')">3</div>
+                        <div id = "kp_enter" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_enter')">Enter</div>
+                    </div>
+            
+                    <div id="row6" class="row">   
+                        <div id = "Cntrl" class="keyboardKey parent rowSixKey" style="width: 60px;"onclick="keyboardKeyClick('Cntrl')">Cntrl</div>
+                        <div class="keyboardKey parent_no_key rowSixKey"></div>
+                        <div id="Alt" class="keyboardKey parent rowSixKey"onclick="keyboardKeyClick('Alt')">Alt</div>
+                        <div id="Space" class="keyboardKey parent rowSixKey" style="width: 343px;"onclick="keyboardKeyClick('Space')">Space</div>
+                        <div id="Alt" class="keyboardKey parent rowSixKey"onclick="keyboardKeyClick('Alt')">Alt</div>
+                        <div class="keyboardKey parent_no_key rowSixKey"></div>
+                        <div id = "Cntrl2" class="keyboardKey parent rowSixKey" style="width: 60px;"onclick="keyboardKeyClick('Cntrl2')">Cntrl</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id="leftarrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('leftarrow')">←</div>
+                        <div id="downarrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('downarrow')">↓</div>
+                        <div id="rightarrow" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('rightarrow')">→</div>
+                        <div class="keyboardKey parent_no_key rowOneKey"></div>
+                        <div id="kp_ins" class="keyboardKey parent "style="height: 50px;width: 118px;"onclick="keyboardKeyClick('kp_ins')">0</div>
+                        <div id="kp_del" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('.')">.</div>
+                        <div id="kp_enter2" class="keyboardKey parent rowOneKey"onclick="keyboardKeyClick('kp_enter2')">Enter</div>
+                    </div>
+                </div>
+                
+                <div id="bindType">
+                    <h4 style="color: rgb(230, 221, 221);" id="selectedKey"></h4>
+                   
+                    <h3 class="textStyle"id="secondTwoTitle"></h3>
+                    <div id="binds" style="display: none;">
+                        <p id="Remove Crosshair" class="bindItem displayDesc" onclick="bindClick('Remove Crosshair')">Remove Crosshair</p>
+                        <p class="hide">toggle the visibility of your crosshair. 
+                            This can be useful if you're ever in need of taking in-game screenshots.</p>
+
+                        <p id="Mute" class="bindItem displayDesc" onclick="bindClick('Mute')">Mute Team</p>
+                        <p class="hide">This bind will mute your teammates voice communition.</p>
+
+                        <p id="Clear Decals" class="bindItem displayDesc" onclick="bindClick('Clear Decals')">Clear Decals</p>
+                        <p class="hide">Decals are any effects added to the walls and ground of map as a result of gameplay: blood, graffitis, etc.
+                             This bind will instantly clear all decals.</p>
+
+                        <p id="Toggle Hands" class="bindItem displayDesc" onclick="bindClick('Toggle Hands')">Toggle Hands</p>
+                        <p class="hide">Will switch your gun position between your left and right hand. 
+                            Typically used to help prevent your gun model reducing visability.</p>
+
+                        <p id="Jumpthrow" class="bindItem displayDesc" onclick="bindClick('Jumpthrow')">Jump Throw</p>
+                        <p class="hide"><strong>Must be placed in your autoexec</strong> Pull pin and throw perfect jump throws every time</p>
+
+                        <p id="Net_graph" class="bindItem displayDesc" onclick="bindClick('Net_graph')">Net_graph</p>
+                        <div class="hide">The net_graph is a useful tool, showing for statistics at the bottom of your screen.
+                            however, in turn adds unnecessary clutter to your game and can be distracting. 
+                            This bind will make it so that when you click a key, the net_graph menu will show, and when you let go it will hide. 
+                        </div>
+
+                        <p id="Zoom Radar" class="bindItem displayDesc" onclick="bindClick('Zoom Radar')">Zoom Radar</p>
+                        <div class="hide">Zoom into your radar! Pressing it 4 times will loop the size back round to where it was originally.</div>
+
+                        <p id="Weapon Buys" class="bindItem displayDesc" onclick="bindClick('Weapon Buys')">Weapon Buys</p>
+                        <div class="hide">Configure binds to buy loadouts with a single button press.</div>
+                    </div>
+              
+                </div>
+                <div id="loadoutChoice"  style="display: none;">
+                    <h3 class="textStyle"> 2.5 Pick Loadout</h3>
+                    <div id="primaryName">
+                        <h4 style="color: rgb(230, 221, 221);">Primary</h4>
+                        <script>
+                            function test(type) {
+                                if(document.getElementById(type).style.display == "none") {
+                                    document.getElementById(type).style.display = "block"
+                                }
+                                    
+                                else{
+                                    document.getElementById(type).style.display = "none"
+                                }
+                            }
+                        </script>
+                        <h5 style="color: rgb(202, 194, 194)"> Rifles</h4>
+                        <button onclick="test('Rifles')"></button>
+                        <div class="pickLoadoutText" id="Rifles">
+                            
+                               
+                            <script>
+                                displayLoadoutImage("Rifles");   
+                            </script>
+                        </div>
+
+                        <h5 style="color: rgb(202, 194, 194)"> SMGs</h4>
+                            <button onclick="test('SMGs')"></button>
+                        <div class="pickLoadoutText" id="SMGs">
+                            
+                            <script>
+                                displayLoadoutImage("SMGs");   
+                            </script>
+                        </div>
+
+                        <h5 style="color: rgb(202, 194, 194)">  Heavy</h4>
+                        <button onclick="test('Heavy')"></button>
+                        <div class="pickLoadoutText" id="Heavy">
+                           
+                            <script>
+                                displayLoadoutImage("Heavy");   
+                            </script>
+                        </div>
+                    </div>
+               
+                    <h4 style="color: rgb(230, 221, 221);">Secondary</h4>
+                    <button onclick="test('Secondary')"></button>
+                    <div class="pickLoadoutText" id="Secondary">
+                        
+                        <script>
+                            displayLoadoutImage("Secondary");   
+                        </script>
+                    </div>
+
+                    <h4 style="color: rgb(230, 221, 221);">Grenades</h4>
+                    <button onclick="test('Grenade')"></button>
+                    <div class="pickLoadoutText" id="Grenade">
+                        
+                        <script>
+                            displayLoadoutImage("Grenade");   
+                        </script>
+                    </div>
+
+                    <h4 style="color: rgb(230, 221, 221);">Equipment </h4>
+                    <button onclick="test('Equipment')"></button>
+                    <div class="pickLoadoutText" id="Equipment">
+                        
+                        <script>
+                            displayLoadoutImage("Equipment");   
+                        </script>
+                    </div>
+                </div>
+                <div id="thirdSection"  style="display: none;padding-bottom: 40px;">
+                    <h3 class="textStyle" id="thirdTitle"> 3.  Copy your bind!</h3>
+                    <textarea readonly id="consoleCode" rows="6" cols="100"></textarea>
+                    <button onclick="CopyFunction()">Copy text</button>
+                    <button onclick="clearBinds()">Clear</button>
+                    <h3 class="textStyle" id="T-Price"></h3>
+                    <h3 class="textStyle" id="CT-Price"></h3>
+
+                </div>
+    
+            </div>
+       
+            <!-- 
+                any bind suggestions join steamgroup and post
+                export as auto exec button
+                green text instead of pop up
+            -->
+
+        </section>
+      
+   
+        
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);position: fixed;text-align: center;bottom: 0px;width: 101%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+     
+
+    </body>
+</html>

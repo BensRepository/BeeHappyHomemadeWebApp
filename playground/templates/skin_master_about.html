@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Skin Master About</title>
+        <!-- tab bar icon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'skins/pistols/deserteagle/purple/Blaze.png'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <link href="{% static 'css/skin_master.css'%}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: black;">
+            <div class="container px-lg-5">
+                <img href="{% url 'index' %}" src="/static/images/tools.png" width="40" height="auto" class="me-2" alt="tool emoji" style="display: block;">
+                <a class="navbar-brand" href="{% url 'index' %}">CSTools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'calculator' %}">Case Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sticker' %}">Sticker Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'roulette' %}">Strat Roulette</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bind' %}">Bind Generator</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="{% url 'skin_master' %}">Skin Master</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://steamcommunity.com/tradeoffer/new/?partner=127649164&token=AG79v66Q">DONATE (Trade Link)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Content -->
+        <style type="text/css">
+            td {
+              padding: 0 25px;
+            }
+          </style>
+        <section style="text-align: center;align-items: center;"> 
+            <div>
+                <p1 style="font-size: 55px;">About</p1><br>
+                <p> The following tables show how the Dificulty and Rank have been setup</p>
+                <p>Each level of difficulty is determined by the amount of skins included within your custom parameters.</p>
+                <p2 style="font-size: 25px;"><b>Difficulty Presets</b> </p2><br><br>
+                <table style="padding: 10px; margin-left: auto; margin-right: auto;color: white;">
+                    <tr style="padding: 10px; column-gap: 40px;">
+                      <th>Total</th>
+                      <th>Ohnepixel</th>
+                      <th>Expert</th>
+                      <th>Hard</th>
+                      <th>Medium</th>
+                      <th>Easy</th>
+                      <th>Unranked</th>
+                    </tr>
+                    <tr>
+                      <td>1139</td>
+                      <td>>1000</td>
+                      <td>>850</td>
+                      <td>>650</td>
+                      <td>>500</td>
+                      <td>>450</td>
+                      <td> < 400</td>
+                    </tr>
+                    <tr>
+                      <th>Weapons</th>
+                      <td>All</td>
+                      <td>All</td>
+                      <td>Smgs Rifles Pistols</td>
+                      <td>Smgs Rifles Shotguns</td>
+                      <td>Smgs Rifles Pistols</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                        <th>Rarity</th>
+                        <td> All</td>
+                        <td>Covert Classified Restricted Mil-spec</td>
+                        <td>Covert Classified Restricted Mil-spec</td>
+                        <td>Covert Classified Restricted Mil-spec</td>
+                        <td>Covert Classified Restricted</td>
+                        <td></td>
+                      </tr>
+                  </table>
+            </div><br><br><br>
+            <div>
+                <table style="text-align: center;align-items: center;padding: 10px;margin-left: auto; margin-right: auto;opacity: 100%;color: white;">
+                    <tr style="padding: 10px; column-gap: 40px;">
+                      <th>Rarity Category</th>
+                      <td>Covert</td>
+                      <td>Classified</td>
+                      <td>Restricted</td>
+                      <td>Mil-spec</td>
+                      <td>Industrial Grade</td>
+                      <td>Consumer Grade</td>
+
+
+ 
+                    <tr>
+                      <th>Number of skins</th>
+                      <td>88</td>
+                      <td>157</td>
+                      <td>247</td>
+                      <td>363</td>
+                      <td>134</td>
+                      <td>150</td>
+                    
+
+                    </tr>
+   
+                  </table>
+            </div><br><br><br>
+            <div>
+                <table style="text-align: center;align-items: center;padding: 10px;margin-left: auto; margin-right: auto;color: white;">
+                    <tr style="padding: 10px; column-gap: 40px;">
+                      <th>Weapon Category</th>
+                      <td>Smgs</td>
+                      <td>Rifles</td>
+                      <td>Pistols</td>
+                      <td>Shotguns</td>
+                      <td>Machineguns</td>
+
+
+ 
+                    <tr>
+                      <th>Number of skins</th>
+                      <td>237</td>
+                      <td>379</td>
+                      <td>346</td>
+                      <td>134</td>
+                      <td>43</td>
+                    </tr>
+   
+                  </table>
+            </div>
+            <br><br>  <p2 style="font-size: 25px;"><b>Rank</b></p2><br><br>
+            <p> Your rank is calculated based on your success rate with skin name being weighted 45% higher than rarity.</p> <p>Calaculation: </p> 
+            <img src="/static/images/ScoreCalculation.jpg" width="850" height="auto"  alt="Point Calculation" style="display: block;margin-left: auto; margin-right: auto;">
+            <p>
+            <p> Score needed for each rank:</p>
+                
+
+
+            </p>
+        </div>
+        <div>
+            <table style="text-align: center;align-items: center;padding: 10px;margin-left: auto; margin-right: auto;color: white;">
+                <tr style="padding: 10px; column-gap: 40px;">
+                  <th>Rank</th>
+                  <td>Global Elite</td>
+                  <td>Supreme</td>
+                  <td>LEM</td>
+                  <td>LE</td>
+                  <td>DMG</td>
+                  <td>MGE</td>
+                  <td>MG2</td>
+                  <td>MG</td>
+                  <td>Nova Master</td>
+                  <td>Nova III</td>
+                  <td>Nova II</td>
+                  <td>Nova I</td>
+                  <td>SEM</td>
+                  <td>Silver Elite</td>
+                  <td>Silver III</td>
+                  <td>Silver II</td>
+                  <td>Silver I</td>
+
+
+
+
+                <tr>
+                  <th>Score</th>
+                  <td>65</td>
+                  <td>55</td>
+                  <td>50</td>
+                  <td>45</td>
+                  <td>40</td>
+                  <td>35</td>
+                  <td>32</td>
+                  <td>28</td>
+                  <td>26</td>
+                  <td>24</td>
+                  <td>22</td>
+                  <td>20</td>
+                  <td>18</td>
+                  <td>16</td>
+                  <td>14</td>
+                  <td>12</td>
+                  <td><12</td>
+                </tr>
+
+              </table>
+        </div>
+        <br><br><br><br>
+        </section>
+        <!-- Footer-->
+        <div style="height: 26px;background-color:  rgba(27, 27, 27, 0.9);position: fixed;text-align: center;bottom: 0px;width: 100%; "><p class="m-0 text-center text-white">Copyright &copy; CSTools 2023</p></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/skin_master.js' %}"></script>
+    </body>
+</html>
+
