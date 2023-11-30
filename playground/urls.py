@@ -8,4 +8,10 @@ router = DefaultRouter()
 
 urlpatterns =[
 
-    path("",WebAppViewset.load_index, name='index')]
+    path("",WebAppViewset.load_index, name='index')
+    ]
+
+
+
+
+
