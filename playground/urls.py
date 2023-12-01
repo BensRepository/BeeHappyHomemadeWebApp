@@ -1,17 +1,6 @@
 from django.urls import path
-from . import views 
-from rest_framework.routers import DefaultRouter
-from .views import WebAppViewset
-#Url config / routes
+from . import views
 
-router = DefaultRouter()
-
-urlpatterns =[
-
-    path("",WebAppViewset.load_index, name='index')
-    ]
-
-
-
-
-
+urlpatterns = [
+    path('', views.load_index)
+]
