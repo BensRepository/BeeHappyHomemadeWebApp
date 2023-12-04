@@ -70,3 +70,4 @@ function contactSubmit(){
     alert(name+" " + email+" " + phone+ " "+ message)
     
 }
+
