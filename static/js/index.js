@@ -57,6 +57,10 @@ function viewCrafts(){
 
     window.location.href = domain+"/crafts";
 }
+function viewCraftsHome(){
+
+    window.location.href = domain+"#portfolio";
+}
 function viewContact(){
 
     window.location.href =  domain+"/#contact";
@@ -70,4 +74,13 @@ function contactSubmit(){
     alert(name+" " + email+" " + phone+ " "+ message)
     
 }
+var selectedItem = "test"
 
+function navigateEnquire(image,name,price,folder) {
+    localStorage.selectedItem = image
+    localStorage.name = name
+    localStorage.price = price
+    localStorage.folder = folder
+    window.location.href =  domain+"/enquire";
+    
+}

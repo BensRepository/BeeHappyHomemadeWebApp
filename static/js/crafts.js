@@ -18,3 +18,8 @@ function viewAbout(){
 
     window.location.href =  domain+"/#about";
 }
+
+function viewCraftsHome(){
+
+    window.location.href = domain+"#portfolio";
+}
