@@ -46,12 +46,15 @@
         {{ context|json_script:"context" }}
         {{ itemTypes|json_script:"itemTypes" }}
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center" style="background-color: yellow;height: 900px;">
+        <header class="masthead bg-primary text-white text-center" style="background-color: yellow;height: 930px;">
             
             
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img id="item_picture_value" class="img-fluid" src="{% static 'images/latest-releases/coaster-design-1.jpg' %}" alt="..." / style="width: 40%;"> 
+                <img id="item_picture_value" class="img-fluid" src="{% static 'images/latest-releases/coaster-design-1.jpg' %}" alt="..." / style="width: 40%;border-radius: 25px;background-position: left top;background-repeat: repeat;">   
+                <br>
+                
+                
                 <!-- Masthead Heading-->
                 <h1 id="selected-name" class="masthead-heading text-uppercase mb-0">Name</h1>
                 <!-- Icon Divider-->
@@ -63,13 +66,13 @@
                 <!-- Masthead Subheading-->
                 <div>
                     <div class="dropdown">
-                        <button id="pick-design" class="dropbtn">Pick Design</button>
+                        <button id="pick-design" class="dropbtn hover">Pick Design</button>
                         
                         <div id="designs-drop" class="dropdown-content">
                             <a onclick="customChoice('Custom')"> Custom</a>
                         </div>
                     </div>
-                    <button id="pick-design" class="dropbtn" onclick="addToEnquiriesList(document.getElementById('pick-design').innerHTML)">Add</button>
+                    <button id="pick-design" class="dropbtn hover" onclick="addToEnquiriesList(document.getElementById('selected-name').innerHTML,document.getElementById('pick-design').innerHTML,localStorage.getItem('price'))">Add</button>
                 </div>
                
 
@@ -120,15 +123,23 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <div  class="text-center text-uppercase text-secondary mb-0" style="width: 30%;display: inline-block;text-align: center;align-items: center;" ></div>
-                <ul id="item-list">
-
-                </ul>
-                <ul id="item-list2">
+                <div  class="" style="width: 30%;display: inline;text-align: center;align-items: center;" ></div>
+                <table id="item-list">
+                    <tr>
+                      <th>Item</th>
+                      <th>Design</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                    
+                  </table>
+                  
 
                 </ul>
         </section>
-
+        <script>
+            generateItemList()
+        </script>
         <!-- Contact Section-->
         <section class="page-section" id="contact">
             <div class="container">
