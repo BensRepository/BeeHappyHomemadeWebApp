@@ -73,6 +73,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-weight: normal;
 }
 
 tr:nth-child(even) {
@@ -81,4 +82,8 @@ tr:nth-child(even) {
 
 .hover:hover{
   opacity: 50%;
+}
+
+.makeBold{
+  font-weight: bold;
 }

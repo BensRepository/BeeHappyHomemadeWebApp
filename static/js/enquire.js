@@ -68,7 +68,6 @@ function addToEnquiriesList(item,design,price){
                 if (added == true) {
                     
                 }  else{
-                    alert("alert")
                     storageArray.push([item,design,1,price])
                     localStorage.setItem('students',JSON.stringify(storageArray))
                 }
@@ -85,27 +84,42 @@ function addToEnquiriesList(item,design,price){
 }
 
 function generateItemList(){
-    oldtable = document.getElementById("item-list")
-    oldtable.remove()
-    table = document.createElement("table"); 
-    row = document.createElement("tr"); 
-    var name_cell = document.createElement("th"); 
-    var design_cell = document.createElement("th"); 
-    var price_cell = document.createElement("th");
-    var quantity_cell = document.createElement("th"); 
-    table.id = "item-list"
-    name_cell.innerHTML = "Name"
-    design_cell.innerHTML = "Design"
-    price_cell.innerHTML = "Price"
-    quantity_cell.innerHTML = "Quantity"
-    row.append(name_cell)
-    row.append(design_cell)
-    row.append(quantity_cell)
-    row.append(price_cell)
-    table.appendChild(row)
-
-
-    document.getElementById("add-table").appendChild(table)
+    if ("students" in localStorage) {
+        oldtable = document.getElementById("item-list")
+        oldtable.remove()
+        table = document.createElement("table"); 
+        row = document.createElement("tr"); 
+        var name_cell = document.createElement("th"); 
+        var design_cell = document.createElement("th"); 
+        var price_cell = document.createElement("th");
+        var quantity_cell = document.createElement("th"); 
+        table.id = "item-list"
+        name_cell.innerHTML = "Name"
+        design_cell.innerHTML = "Design"
+        price_cell.innerHTML = "Price"
+        quantity_cell.innerHTML = "Quantity"
+    
+        table.style.fontWeight = "bold"
+        name_cell.style.fontWeight = "bold"
+        design_cell.style.fontWeight = "bold"
+        price_cell.style.fontWeight = "bold"
+        quantity_cell.style.fontWeight = "bold"
+    
+        row.append(name_cell)
+        row.append(design_cell)
+        row.append(quantity_cell)
+        row.append(price_cell)
+        table.appendChild(row)
+    
+        document.getElementById("add-table").appendChild(table)
+    }
+    else{
+        oldtable = document.getElementById("item-list")
+        oldtable.remove()
+        table = document.createElement("table")
+        table.id = "item-list"
+        document.getElementById("add-table").appendChild(table)
+    }
     if ("students" in localStorage) {
         storageArray = localStorage.getItem("students") 
         storageArray = JSON.parse(storageArray)
