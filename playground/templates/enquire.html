@@ -113,28 +113,26 @@
         </header>
 
         </section>
+
         <!-- About Section-->
         <section class="page-section pg-secondary " id="enquire-list"> 
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Item List</h2>
-         
+            <button style="color: red;" class="dropbtn hover" onclick="clearList()">Clear List</button>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <div  class="" style="width: 30%;display: inline;text-align: center;align-items: center;" ></div>
-                <table id="item-list">
-                    <tr>
-                      <th>Item</th>
-                      <th>Design</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                    </tr>
-                    
-                  </table>
-                  
-
+                <div  id="add-table" style="width: 30%;display: inline;text-align: center;align-items: center;" ></div>
+                    <table id="item-list">
+                        <tr>
+                            <th>Item</th>
+                            <th>Design</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </table>
                 </ul>
         </section>
         <script>
