@@ -76,11 +76,12 @@ function contactSubmit(){
 }
 var selectedItem = "test"
 
-function navigateEnquire(image,name,price,folder) {
+function navigateEnquire(image,name,price,folder,price_info) {
     localStorage.selectedItem = image
     localStorage.name = name
     localStorage.price = price
     localStorage.folder = folder
+    localStorage.price_info = price_info
     window.location.href =  domain+"/enquire";
     
 }

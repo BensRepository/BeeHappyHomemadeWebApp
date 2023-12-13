@@ -17,7 +17,7 @@ function viewAbout(){
 
 // Defines the event listener
 function customChoice(item){
-    document.getElementById('pick-design').innerText = "Custom"
+    document.getElementById('pick-design').innerText = "Selected: Custom"
     //document.getElementById('item_picture_value').src = "/static/images/item-types/"+folder+"/"+this.innerText+".jpg"
 }
 
@@ -28,7 +28,7 @@ function clearList(){
 function addToEnquiriesList(item,design,price){
 
     design = design.split("Selected: ")[1]
-
+    design = design.split(" ")[0]
     if (item == "Pick Design") {
         alert("please pick a design!")
     } else {
@@ -44,10 +44,12 @@ function addToEnquiriesList(item,design,price){
             
                 if ((storageArray[0] == item)&& (storageArray[1] == design)) {
                     storageArray[2] = Number(storageArray[2]) +1
+                    storageArray[3] = Number(storageArray[3]) +Number(price)
                     localStorage.setItem('students',JSON.stringify(storageArray))
                     
                 } else {
-                    
+                    //HERE ISSUE
+
                     storageArray = [[storageArray[0],storageArray[1],storageArray[2],storageArray[3]],[item,design,1,price]]
                     localStorage.setItem('students',JSON.stringify(storageArray))
                 
@@ -58,7 +60,9 @@ function addToEnquiriesList(item,design,price){
                 added = false
                 for (let i = 0; i < storageArray.length; i++) {
                     if (storageArray[i][1] == design && storageArray[i][0] == item) {
+  
                         storageArray[i][2] = Number(storageArray[i][2]) + 1
+                        storageArray[i][3] = Number(storageArray[i][3]) +Number(price)
                         localStorage.setItem('students',JSON.stringify(storageArray))
                         added = true
                         break
@@ -68,6 +72,7 @@ function addToEnquiriesList(item,design,price){
                 if (added == true) {
                     
                 }  else{
+                 
                     storageArray.push([item,design,1,price])
                     localStorage.setItem('students',JSON.stringify(storageArray))
                 }
@@ -127,16 +132,17 @@ function generateItemList(){
         if (storageArray.every(entry => !Array.isArray(entry))) {
             // One dimensional alert
             //alert("One dimensional")
-         
+            price= localStorage.getItem("price");
             var row = document.createElement("tr"); 
             var name_cell = document.createElement("th"); 
             var design_cell = document.createElement("th"); 
             var price_cell = document.createElement("th");
             var quantity_cell = document.createElement("th"); 
-
+          
             name_cell.innerHTML = storageArray[0]
             design_cell.innerHTML = storageArray[1]
-            price_cell.innerHTML = storageArray[3]
+
+            price_cell.innerHTML =formatter.format(Number(storageArray[3]))
             quantity_cell.innerHTML = storageArray[2]
 
             row.append(name_cell)
@@ -144,15 +150,15 @@ function generateItemList(){
             row.append(quantity_cell)
             row.append(price_cell)
             table.appendChild(row)
-            
+         
       
 
        
         } else {
-      
+            price= localStorage.getItem("price");
             //alert("Two dimensional")
             for (let i = 0; i < storageArray.length; i++) {
-          
+             
                 //alert(storageArray[i][0])
                 var row = document.createElement("tr"); 
                 var name_cell = document.createElement("th"); 
@@ -162,7 +168,8 @@ function generateItemList(){
     
                 name_cell.innerHTML = storageArray[i][0]
                 design_cell.innerHTML = storageArray[i][1]
-                price_cell.innerHTML = storageArray[i][3]
+
+                price_cell.innerHTML = formatter.format(Number(storageArray[i][3]))
                 quantity_cell.innerHTML = storageArray[i][2]
                 row.append(name_cell)
                 row.append(design_cell)

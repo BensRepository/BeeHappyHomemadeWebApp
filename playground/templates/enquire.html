@@ -74,23 +74,41 @@
                     </div>
                     <button id="pick-design" class="dropbtn hover" onclick="addToEnquiriesList(document.getElementById('selected-name').innerHTML,document.getElementById('pick-design').innerHTML,localStorage.getItem('price'))">Add</button>
                 </div>
-               
+     
 
-                <p id="price_value" class="masthead-subheading font-weight-light mb-0" style="padding-top: 15px;font-size: 30px;font-weight: bold;">£5 </p> 
+                    <div style="display: inline-block">
+                        <p id="price_value" class="masthead-subheading font-weight-light mb-0"  style="padding-top: 15px;font-size: 30px;font-weight: bold;;display:inline-block">£</p>
+                        <p id="price_info" class="masthead-subheading font-weight-light mb-0"  style="padding-top: 15px;font-size: 30px;font-weight: bold;;display:inline-block">Each2</p>
+                    </div>
               
+         
+     
+
                  
                 
                 <p class="masthead-subheading font-weight-light mb-0" style="padding-top: 15px;font-size: 20px"> 
                     If you are intrested in any of our crafts, please add them to your enquire list and submit the form
                      <br>We will get back in touch within 48 hours </p> 
                 <script>
+                    const formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'GBP',
+
+                    // These options are needed to round to whole numbers if that's what you want.
+                    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+                    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+                    });
+
                     selected = localStorage.getItem("selectedItem");
                     name = localStorage.getItem("name");
                     price= localStorage.getItem("price");
+                    price_info= localStorage.getItem("price_info");
                     path = "/static/images/latest-releases/" + selected
                     document.getElementById("item_picture_value").src = path
                     document.getElementById("selected-name").innerText = name
-                    document.getElementById("price_value").innerText = price
+                    document.getElementById("price_value").innerText = formatter.format(Number(price))
+                    document.getElementById("price_info").innerText = price_info
+
 
                     folder = localStorage.getItem("folder");
                     type = JSON.parse(document.getElementById('itemTypes').innerText)[2]
@@ -117,13 +135,14 @@
         <!-- About Section-->
         <section class="page-section pg-secondary " id="enquire-list"> 
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Item List</h2>
-            <button style="color: red;" class="dropbtn hover" onclick="clearList()">Clear List</button>
+
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
+                <button style="color: red;" class="dropbtn hover" onclick="clearList()">Clear List</button>
                 <div  id="add-table" style="width: 30%;display: inline;text-align: center;align-items: center;" ></div>
                     <table id="item-list">
 
