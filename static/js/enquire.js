@@ -18,12 +18,16 @@ function viewAbout(){
 // Defines the event listener
 function customChoice(item){
     document.getElementById('pick-design').innerText = "Selected: Custom"
+    document.getElementById('item_picture_value').src = " /static/images/thumbnails/Custom.jpg"
+   
     //document.getElementById('item_picture_value').src = "/static/images/item-types/"+folder+"/"+this.innerText+".jpg"
 }
 
 function clearList(){
     localStorage.removeItem('students')
     generateItemList()
+
+
 }
 function addToEnquiriesList(item,design,price){
 
@@ -90,6 +94,7 @@ function addToEnquiriesList(item,design,price){
 
 function generateItemList(){
     if ("students" in localStorage) {
+        document.getElementById("no-crafts-disclaimer").style.display = "none"
         oldtable = document.getElementById("item-list")
         oldtable.remove()
         table = document.createElement("table"); 
@@ -119,6 +124,7 @@ function generateItemList(){
         document.getElementById("add-table").appendChild(table)
     }
     else{
+        document.getElementById("no-crafts-disclaimer").style.display = "block"
         oldtable = document.getElementById("item-list")
         oldtable.remove()
         table = document.createElement("table")

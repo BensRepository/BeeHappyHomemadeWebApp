@@ -39,6 +39,7 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio" onclick="viewCraftsHome()">Crafts</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about" onclick="viewAbout()">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact" onclick="viewContact()">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded active" href="/enquire">Enquire</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,8 +47,8 @@
         {{ context|json_script:"context" }}
         {{ itemTypes|json_script:"itemTypes" }}
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center" style="background-color: yellow;height: 930px;">
-            
+        <header id="pick-design-tab" class="masthead bg-primary text-white text-center" style="background-color: yellow;height: 930px;">
+            <section>
             
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
@@ -56,7 +57,7 @@
                 
                 
                 <!-- Masthead Heading-->
-                <h1 id="selected-name" class="masthead-heading text-uppercase mb-0">Name</h1>
+                <h1 id="selected-name" class="masthead-heading text-uppercase mb-0">Select a Product to Add it to your List!</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -72,7 +73,7 @@
                             <a onclick="customChoice('Custom')"> Custom</a>
                         </div>
                     </div>
-                    <button id="pick-design" class="dropbtn hover" onclick="addToEnquiriesList(document.getElementById('selected-name').innerHTML,document.getElementById('pick-design').innerHTML,localStorage.getItem('price'))">Add</button>
+                    <button id="pick-design-add" class="dropbtn hover" onclick="addToEnquiriesList(document.getElementById('selected-name').innerHTML,document.getElementById('pick-design').innerHTML,localStorage.getItem('price'))">Add</button>
                 </div>
      
 
@@ -89,44 +90,7 @@
                 <p class="masthead-subheading font-weight-light mb-0" style="padding-top: 15px;font-size: 20px"> 
                     If you are intrested in any of our crafts, please add them to your enquire list and submit the form
                      <br>We will get back in touch within 48 hours </p> 
-                <script>
-                    const formatter = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'GBP',
-
-                    // These options are needed to round to whole numbers if that's what you want.
-                    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-                    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-                    });
-
-                    selected = localStorage.getItem("selectedItem");
-                    name = localStorage.getItem("name");
-                    price= localStorage.getItem("price");
-                    price_info= localStorage.getItem("price_info");
-                    path = "/static/images/latest-releases/" + selected
-                    document.getElementById("item_picture_value").src = path
-                    document.getElementById("selected-name").innerText = name
-                    document.getElementById("price_value").innerText = formatter.format(Number(price))
-                    document.getElementById("price_info").innerText = price_info
-
-
-                    folder = localStorage.getItem("folder");
-                    type = JSON.parse(document.getElementById('itemTypes').innerText)[2]
-                    //alert(JSON.parse(document.getElementById('context').innerText)[folder])
-                    for (let i = 0; i < JSON.parse(document.getElementById('context').innerText)[folder].length; i++) {
-                        var dropdown = document.getElementById("designs-drop");
-                        var opt = document.createElement("a"); 
-                        opt.innerText = JSON.parse(document.getElementById('context').innerText)[folder][i]
-                        opt.onclick = function(){
-                            
-                            document.getElementById('pick-design').innerText = "Selected: "+this.innerText
-                            document.getElementById('item_picture_value').src = "/static/images/item-types/"+folder+"/"+this.innerText+".jpg"
-                            document.getElementById('item_picture_value').style.width
-                        };
-                        dropdown.appendChild(opt);
-                    }
-
-                </script>
+                
               
         </header>
 
@@ -135,7 +99,7 @@
         <!-- About Section-->
         <section class="page-section pg-secondary " id="enquire-list"> 
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Item List</h2>
-
+  
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -148,15 +112,15 @@
 
                     </table>
                 </ul>
+                <h3 id="no-crafts-disclaimer" style="display: block;align-items: center;text-align: center;"> No crafts added</h3>
         </section>
-        <script>
-            generateItemList()
-        </script>
+
+ 
         <!-- Contact Section-->
-        <section class="page-section" id="contact">
+        <section class="page-section" id="enquire">
             <div class="container">
                 <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Enquire</h2>
+                <h2 id="enquire-text" class="page-section-heading text-center text-uppercase text-secondary mb-0">Enquire</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -220,6 +184,56 @@
                 </div>
             </div>
         </section>
+        <script>
+            const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'GBP',
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+            });
+            if (localStorage.getItem("price") !== null) {
+                selected = localStorage.getItem("selectedItem");
+                name = localStorage.getItem("name");
+                price= localStorage.getItem("price");
+                price_info= localStorage.getItem("price_info");
+                path = "/static/images/latest-releases/" + selected
+                document.getElementById("item_picture_value").src = path
+                document.getElementById("selected-name").innerText = name
+                document.getElementById("price_value").innerText = formatter.format(Number(price))
+                document.getElementById("price_info").innerText = price_info
+
+
+                folder = localStorage.getItem("folder");
+                type = JSON.parse(document.getElementById('itemTypes').innerText)[2]
+                //alert(JSON.parse(document.getElementById('context').innerText)[folder])
+                for (let i = 0; i < JSON.parse(document.getElementById('context').innerText)[folder].length; i++) {
+                    var dropdown = document.getElementById("designs-drop");
+                    var opt = document.createElement("a"); 
+                    opt.innerText = JSON.parse(document.getElementById('context').innerText)[folder][i]
+                    opt.onclick = function(){
+                        
+                        document.getElementById('pick-design').innerText = "Selected: "+this.innerText
+                        document.getElementById('item_picture_value').src = "/static/images/item-types/"+folder+"/"+this.innerText+".jpg"
+                        document.getElementById('item_picture_value').style.width
+                    };
+                    dropdown.appendChild(opt);
+                }
+            } else {
+                
+                document.getElementById("enquire-list").style.display = "none"
+                document.getElementById("pick-design-tab").style.display = "none"
+                document.getElementById("item_picture_value").style.display = "none"
+                document.getElementById("price_info").style.display = "none"
+                document.getElementById("price_value").style.display = "none"
+                document.getElementById("enquire").style.paddingTop = "150px"
+                document.getElementById("enquire-text").innerHTML = "Select a Craft for more enquire options"
+                
+            }
+            
+            generateItemList()
+        </script>
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
