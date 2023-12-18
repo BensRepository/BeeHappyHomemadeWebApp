@@ -87,3 +87,7 @@ tr:nth-child(even) {
 .makeBold{
   font-weight: bold;
 }
+
+.removeButton{
+  color: red;
+}

@@ -25,6 +25,7 @@ function customChoice(item){
 
 function clearList(){
     localStorage.removeItem('students')
+    document.getElementById('total-price').style.display = "none"
     generateItemList()
 
 
@@ -94,31 +95,36 @@ function addToEnquiriesList(item,design,price){
 
 function generateItemList(){
     if ("students" in localStorage) {
+        document.getElementById('total-price').style.display = "block"
         document.getElementById("no-crafts-disclaimer").style.display = "none"
         oldtable = document.getElementById("item-list")
         oldtable.remove()
         table = document.createElement("table"); 
         row = document.createElement("tr"); 
+
         var name_cell = document.createElement("th"); 
         var design_cell = document.createElement("th"); 
         var price_cell = document.createElement("th");
         var quantity_cell = document.createElement("th"); 
+        var action_cell = document.createElement("th"); 
         table.id = "item-list"
         name_cell.innerHTML = "Name"
         design_cell.innerHTML = "Design"
         price_cell.innerHTML = "Price"
         quantity_cell.innerHTML = "Quantity"
-    
+        action_cell.innerHTML = ""
         table.style.fontWeight = "bold"
         name_cell.style.fontWeight = "bold"
         design_cell.style.fontWeight = "bold"
         price_cell.style.fontWeight = "bold"
         quantity_cell.style.fontWeight = "bold"
-    
+        action_cell.className = "removeButton hover"
+        
         row.append(name_cell)
         row.append(design_cell)
         row.append(quantity_cell)
         row.append(price_cell)
+        row.append(action_cell)
         table.appendChild(row)
     
         document.getElementById("add-table").appendChild(table)
@@ -140,21 +146,26 @@ function generateItemList(){
             //alert("One dimensional")
             price= localStorage.getItem("price");
             var row = document.createElement("tr"); 
+            row.id = 0
             var name_cell = document.createElement("th"); 
             var design_cell = document.createElement("th"); 
             var price_cell = document.createElement("th");
             var quantity_cell = document.createElement("th"); 
-          
+            var action_cell = document.createElement("th"); 
             name_cell.innerHTML = storageArray[0]
             design_cell.innerHTML = storageArray[1]
 
             price_cell.innerHTML =formatter.format(Number(storageArray[3]))
             quantity_cell.innerHTML = storageArray[2]
-
+            action_cell.onclick = function () { removeRow(0)}
+            action_cell.innerHTML = "Remove"
+            action_cell.className = "removeButton"
+            action_cell.className = "removeButton hover"
             row.append(name_cell)
             row.append(design_cell)
             row.append(quantity_cell)
             row.append(price_cell)
+            row.append(action_cell)
             table.appendChild(row)
          
       
@@ -167,20 +178,25 @@ function generateItemList(){
              
                 //alert(storageArray[i][0])
                 var row = document.createElement("tr"); 
+                row.id = i
                 var name_cell = document.createElement("th"); 
                 var design_cell = document.createElement("th"); 
                 var price_cell = document.createElement("th");
                 var quantity_cell = document.createElement("th"); 
-    
+                var action_cell = document.createElement("th"); 
                 name_cell.innerHTML = storageArray[i][0]
                 design_cell.innerHTML = storageArray[i][1]
-
+                action_cell.className = "removeButton"
+                action_cell.className = "removeButton hover"
                 price_cell.innerHTML = formatter.format(Number(storageArray[i][3]))
                 quantity_cell.innerHTML = storageArray[i][2]
+                action_cell.innerHTML = "Remove"
+                action_cell.onclick = function () { removeRow(i)}
                 row.append(name_cell)
                 row.append(design_cell)
                 row.append(quantity_cell)
                 row.append(price_cell)
+                row.append(action_cell)
                 table.appendChild(row)
             }
 
@@ -192,5 +208,59 @@ function generateItemList(){
     }
    
     
-    
+    calaculateTotal()
+}
+
+
+function removeRow(id){
+
+    storageArray = localStorage.getItem("students") 
+    storageArray = JSON.parse(storageArray) 
+    if (storageArray.every(entry => !Array.isArray(entry))) {
+        localStorage.removeItem('students')
+
+    }
+    else{
+        storageArray.splice(id,1)
+        localStorage.setItem('students',JSON.stringify(storageArray))
+        if (storageArray.length == 0) {
+            localStorage.removeItem('students')
+        } else {
+            
+        }
+
+    }
+
+    generateItemList()
+
+}
+
+
+function calaculateTotal(){
+    storageArray = localStorage.getItem("students") 
+    storageArray = JSON.parse(storageArray)
+
+    if ("students" in localStorage) {
+        document.getElementById('total-price').style.display = "block"
+        total = 0
+        if (storageArray.every(entry => !Array.isArray(entry))) {
+            total = Number(storageArray[3])
+            
+        }
+        else{
+            for (let i = 0; i < storageArray.length; i++) {
+                total += Number(storageArray[i][3])
+              }
+        }
+        if (total != 0) {
+            document.getElementById('total-price').innerHTML = "Total: £" + total
+            document.getElementById('total-price').style.paddingTop = "50px"
+        } else {
+            document.getElementById('total-price').style.display = "none"
+        }
+    }else{
+        document.getElementById('total-price').style.display = "none"
+    }
+   
+
 }
