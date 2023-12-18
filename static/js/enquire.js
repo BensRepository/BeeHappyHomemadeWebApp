@@ -26,6 +26,7 @@ function customChoice(item){
 function clearList(){
     localStorage.removeItem('students')
     document.getElementById('total-price').style.display = "none"
+    document.getElementById('clear-button').style.display = "none"
     generateItemList()
 
 
@@ -95,6 +96,7 @@ function addToEnquiriesList(item,design,price){
 
 function generateItemList(){
     if ("students" in localStorage) {
+        document.getElementById('clear-button').style.display = "block"
         document.getElementById('total-price').style.display = "block"
         document.getElementById("no-crafts-disclaimer").style.display = "none"
         oldtable = document.getElementById("item-list")
@@ -204,7 +206,7 @@ function generateItemList(){
         } // Has at least one entry that is an array
         
     } else {
-     
+        document.getElementById('clear-button').style.display = "none"
     }
    
     
@@ -225,6 +227,7 @@ function removeRow(id){
         localStorage.setItem('students',JSON.stringify(storageArray))
         if (storageArray.length == 0) {
             localStorage.removeItem('students')
+            document.getElementById('clear-button').style.display = "none"
         } else {
             
         }
