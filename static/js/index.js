@@ -66,7 +66,7 @@ function viewContact(){
     window.location.href =  domain+"/#contact";
 }
 
-function contactSubmit(){
+function contactSubmit2(){
     name = document.getElementById("name").value
     email = document.getElementById("email").value
     phone = document.getElementById("phone").value
@@ -85,3 +85,44 @@ function navigateEnquire(image,name,price,folder,price_info) {
     window.location.href =  domain+"/enquire";
     
 }
+
+async function contactSubmit(){
+    name = document.getElementById("name").value
+    email = document.getElementById("email").value
+    phone = document.getElementById("phone").value
+    message = document.getElementById("message").value
+    let javascript_info = {"name":name,"email":email,"phone":phone,"message":message}
+    let data = await aJAX('', method='post',body= JSON.stringify({javascript_info: javascript_info}),"Home")
+    //alert(await data['view-information'])
+}
+
+async function aJAX(url, method, body,page){
+
+    let headers = {
+        'X-Requested-With':'XMLHttpRequest',
+        'Content-Type': 'application/json'
+    }
+
+    if (method == 'post') {
+        const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value
+        headers['X-CSRFToken'] = csrf
+        
+    } 
+ 
+    if (page == "Home") {
+        let response = await fetch('/post',{
+            method: method,
+            headers: headers,
+            body: body
+        })
+    } else {
+        let response = await fetch('/postList',{
+            method: method,
+            headers: headers,
+            body: body
+        })
+    }
+
+    return await response.json()
+}
+

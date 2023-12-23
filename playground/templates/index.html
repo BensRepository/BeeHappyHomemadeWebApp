@@ -46,6 +46,8 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" width="255px" height="240" src="{% static 'images/bee.png' %}" alt="..." />
                 <!-- Masthead Heading-->
+
+                {% csrf_token %}
                 <h1 class="masthead-heading text-uppercase mb-0">Bee Happy Homemade</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
@@ -57,6 +59,7 @@
                 <p class="masthead-subheading font-weight-light mb-0">Homemade Gifts - Upcycling - Personalisation Options </p>
             </div>
         </header>
+        
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
@@ -187,7 +190,7 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <form  method="GET" id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
@@ -219,7 +222,8 @@
                             <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission <span>successful!</span></div>
+                                    <div class="fw-bolder">Form submission <span>successful!</span> </div>
+                                    <div class="fw-bolder">You will recieve a confirmation email from <b class="text-bg-primary-blue">beehappyhomemadebackend@gmail.com</b> shortly.</div>
                                 </div>
                             </div>
                             <!-- Submit error message-->

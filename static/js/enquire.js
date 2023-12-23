@@ -97,6 +97,7 @@ function addToEnquiriesList(item,design,price){
 function generateItemList(){
     if ("students" in localStorage) {
         document.getElementById('clear-button').style.display = "block"
+        document.getElementById('enquire').style.display = "block"
         document.getElementById('total-price').style.display = "block"
         document.getElementById("no-crafts-disclaimer").style.display = "none"
         oldtable = document.getElementById("item-list")
@@ -207,6 +208,7 @@ function generateItemList(){
         
     } else {
         document.getElementById('clear-button').style.display = "none"
+        document.getElementById('enquire').style.display = "none"
     }
    
     
@@ -228,6 +230,7 @@ function removeRow(id){
         if (storageArray.length == 0) {
             localStorage.removeItem('students')
             document.getElementById('clear-button').style.display = "none"
+            document.getElementById('enquire').style.display = "none"
         } else {
             
         }
@@ -266,4 +269,20 @@ function calaculateTotal(){
     }
    
 
+}
+
+async function contactSubmitList(){
+    name = document.getElementById("name").value
+    email = document.getElementById("email").value
+    phone = document.getElementById("phone").value
+    message = document.getElementById("message").value
+    total = document.getElementById("total-price").innerHTML
+
+    storageArray = localStorage.getItem("students") 
+    storageArray = JSON.parse(storageArray)
+
+    let javascript_info = {"name":name,"email":email,"phone":phone,"message":message,"items" : storageArray,"total":total}
+    let data = await aJAX('postList', method='post',body= JSON.stringify({javascript_info: javascript_info}),"Enquire")
+    alert(await data['view-information'])
+    clearList()
 }

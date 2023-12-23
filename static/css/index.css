@@ -6660,6 +6660,10 @@ textarea.form-control-lg {
   background-color: RGBA(26, 188, 156, var(--bs-bg-opacity, 1)) !important;
 }
 
+
+.text-bg-primary-blue{
+  color: RGBA(26, 188, 156, var(--bs-bg-opacity, 1)) !important;
+}
 .text-bg-secondary {
   color: #fff !important;
   background-color: RGBA(44, 62, 80, var(--bs-bg-opacity, 1)) !important;

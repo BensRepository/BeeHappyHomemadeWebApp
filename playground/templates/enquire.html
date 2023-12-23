@@ -115,7 +115,7 @@
                 </ul>
                 <h3 id="no-crafts-disclaimer" style="display: block;align-items: center;text-align: center;padding-top: 40px;"> No crafts added</h3>
         </section>
-
+        {% csrf_token %}
 
         <!-- Contact Section-->
         <section class="page-section" id="enquire">
@@ -171,6 +171,7 @@
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
                                     <div class="fw-bolder">Form submission <span>successful!</span></div>
+                                    <div class="fw-bolder">You will recieve a confirmation email from <b class="text-bg-primary-blue">beehappyhomemadebackend@gmail.com</b> shortly.</div>
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -179,13 +180,18 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit" onclick="contactSubmit()">Send</button>
+                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit" onclick="contactSubmitList()">Send</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
         <script>
+
+
+            
+
+
             const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'GBP',
