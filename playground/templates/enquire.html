@@ -116,12 +116,18 @@
                 <h3 id="no-crafts-disclaimer" style="display: block;align-items: center;text-align: center;padding-top: 40px;"> No crafts added</h3>
         </section>
         {% csrf_token %}
+  
+        <section id="enquire-text-section" class="page-section" style="padding-top: 13%;padding-bottom: 13%;">
+            <h2 id="enquire-text2" class="page-section-heading text-center  text-secondary mb-0">Enquire</h2>
+        </section>
 
+
+       
         <!-- Contact Section-->
         <section class="page-section" id="enquire">
             <div class="container">
                 <!-- Contact Section Heading-->
-                <h2 id="enquire-text" class="page-section-heading text-center text-uppercase text-secondary mb-0">Enquire</h2>
+                <h2 id="enquire-text" class="page-section-heading text-center  text-secondary mb-0">Enquire</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -201,6 +207,8 @@
             //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
             });
             if (localStorage.getItem("price") !== null) {
+                document.getElementById("enquire-text2").style.display = "none"
+                document.getElementById("enquire-text-section").style.display = "none"
                 selected = localStorage.getItem("selectedItem");
                 name = localStorage.getItem("name");
                 price= localStorage.getItem("price");
@@ -235,7 +243,8 @@
                 document.getElementById("price_info").style.display = "none"
                 document.getElementById("price_value").style.display = "none"
                 document.getElementById("enquire").style.paddingTop = "150px"
-                document.getElementById("enquire-text").innerHTML = "Select a Craft for more enquire options"
+                document.getElementById("enquire-text-section").style.display = "block"
+                document.getElementById("enquire-text2").innerHTML = "Select a Craft for more enquire options"
                 
             }
             
